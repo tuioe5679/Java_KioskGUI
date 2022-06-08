@@ -7,6 +7,7 @@ import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -40,7 +41,8 @@ public class POS_StockManagement extends JPanel implements ActionListener {
 		model.addColumn("상품가격");
 		
 		jtableStock = new JTable(model);
-		jtableStock.setBounds(200,20,300,200);
+		JScrollPane jtable = new JScrollPane(jtableStock);
+		jtable.setBounds(200,20,300,200);
 		
 		buttonDB = new JButton("상품 새로 고침");
 		buttonDB.setBounds(10,70,150,40);
@@ -55,11 +57,11 @@ public class POS_StockManagement extends JPanel implements ActionListener {
 		buttonDelete.setBounds(10,250,150,40);
 		
 		add(labelName);
-		add(jtableStock);
 		add(buttonDB);
 		add(buttonRegister);
 		add(buttonUpdate);
 		add(buttonDelete);
+		add(jtable);
 		
 		buttonDB.addActionListener(this);
 		buttonRegister.addActionListener(this);
