@@ -181,10 +181,54 @@ public class ItemDAO {
 		}
 			
 		//6. 재고관리화면 - 제품 정보 수정
+		public boolean updateitem(Item item) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = "update item set item_name=?,item_stock=?,item_price=? where(id=?)";
+			boolean result = false;
+			
+			try {
+				conn = DBconnect.connect();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, item.getItem_name());
+				pstmt.setInt(2, item.getItem_stock());
+				pstmt.setInt(3, item.getItem_price());
+				pstmt.setInt(4, item.getId());
+				int r = pstmt.executeUpdate();
+				if(r>0) {
+					result = true;
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				DBconnect.close();
+			}
+			return result;
+		}
 			
 		//6. 재고관리화면 - 등록 제품 삭제	
+		
+		public boolean deleteitem(int id) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = "delete from item where (id=?)";
+			boolean result = false;
 			
-
+			try {
+				conn = DBconnect.connect();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, id);
+				int r = pstmt.executeUpdate();
+				if(r>0) {
+					result = true;
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				DBconnect.close();
+			}
+			return result;
+		}
 }
 
 

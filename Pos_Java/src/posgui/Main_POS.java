@@ -24,5 +24,4 @@ public class Main_POS extends JFrame{
 		mainPOS.setSize(550,400);
 		mainPOS.setVisible(true);
 	}
-
 }

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -14,10 +15,11 @@ import javax.swing.table.DefaultTableModel;
 import item.Item;
 import item.ItemDAO;
 
+
 public class POS_StockManagement extends JPanel implements ActionListener {
 	
 	private JLabel labelName;
-	private JTable jtableStock;
+	static JTable jtableStock;
 	private JButton buttonDB;
 	private JButton buttonRegister;
 	private JButton buttonUpdate;
@@ -82,9 +84,52 @@ public class POS_StockManagement extends JPanel implements ActionListener {
 				e1.printStackTrace();
 			}
 		}
+		else if(obj==buttonRegister){
+			StockWindow window = new StockWindow(buttonRegister.getText());
+		}
+		else if(obj==buttonUpdate){
+			int row = jtableStock.getSelectedRow();
+			if(row==1) {
+				JOptionPane.showMessageDialog(null, "DB를 불러오지 않았거나 셀을 선택하지 않았습니다"," 경고!",JOptionPane.WARNING_MESSAGE);
+			}
+			else {
+				String text = buttonUpdate.getText();
+				String id = (String) jtableStock.getValueAt(row, 0);
+				String name = (String) jtableStock.getValueAt(row, 1);
+				String stock = (String) jtableStock.getValueAt(row, 2);
+				String price = (String) jtableStock.getValueAt(row, 3);
+				
+				Item item = new Item();
+				item.setId(Integer.parseInt(id));
+				item.setItem_name(name);
+				item.setItem_stock(Integer.parseInt(stock));
+				item.setItem_price(Integer.parseInt(price));
+				StockWindow window = new StockWindow(buttonUpdate.getText(),item);
+			}
+		}
+		else if(obj==buttonDelete){
+			int row = jtableStock.getSelectedRow();
+			if(row==1) {
+				JOptionPane.showMessageDialog(null, "DB를 불러오지 않았거나 셀을 선택하지 않았습니다"," 경고!",JOptionPane.WARNING_MESSAGE);
+			}
+			else {
+				String text = buttonUpdate.getText();
+				String id = (String) jtableStock.getValueAt(row, 0);
+				String name = (String) jtableStock.getValueAt(row, 1);
+				String stock = (String) jtableStock.getValueAt(row, 2);
+				String price = (String) jtableStock.getValueAt(row, 3);
+				
+				Item item = new Item();
+				item.setId(Integer.parseInt(id));
+				item.setItem_name(name);
+				item.setItem_stock(Integer.parseInt(stock));
+				item.setItem_price(Integer.parseInt(price));
+				StockWindow window = new StockWindow(buttonDelete.getText(),item);
+			}
+		}
 	}
 	
-	private void lodaDB(DefaultTableModel model) throws SQLException{
+	public static void lodaDB(DefaultTableModel model) throws SQLException{
 		Vector<Item> itemlist = ItemDAO.getInstance().getAllItem();
 		int rows = model.getRowCount();
 		
