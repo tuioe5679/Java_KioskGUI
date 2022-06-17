@@ -573,3 +573,4 @@ public class UserMainPage implements ActionListener {
 	}
 
 }
+//추가했음
