@@ -93,6 +93,11 @@ public class UserMainPage {
 		lblNewLabel.setBounds(400, 10, 166, 20);
 		panel.add(lblNewLabel);
 		
+		JButton btnNewButton_6 = new JButton("\uB4A4\uB85C\uAC00\uAE30");
+		btnNewButton_6.setBackground(Color.WHITE);
+		btnNewButton_6.setBounds(12, 10, 103, 24);
+		panel.add(btnNewButton_6);
+		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(0, 39, 884, 33);
 		frame.getContentPane().add(panel_1);
