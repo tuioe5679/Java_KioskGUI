@@ -15,8 +15,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.IconifyAction;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import httpAPI.RestApi;
