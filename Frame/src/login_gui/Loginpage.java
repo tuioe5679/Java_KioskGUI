@@ -133,7 +133,7 @@ public class Loginpage implements ActionListener{
 		if(text.equals("로그인")) {
 			UserMainPage userpage = new UserMainPage();
 			userpage.main(null);
-			frmLogin.setVisible(false);
+			frmLogin.dispose();
 		}
 		
 		else if(text.equals("관리자 로그인")) {
@@ -151,7 +151,7 @@ public class Loginpage implements ActionListener{
 			if(getText != "") {
 				MangerPage managerpage = new MangerPage();
 				managerpage.main(null);
-				frmLogin.setVisible(false);
+				frmLogin.dispose();
 			}
 			else {
 				JOptionPane.showConfirmDialog(null, "아이디와 패스워드를 확인해주세요","로그인 실패",JOptionPane.WARNING_MESSAGE);
@@ -160,7 +160,7 @@ public class Loginpage implements ActionListener{
 		else if(text.equals("회원가입")) {
 			SingUp singupPage = new SingUp();
 			singupPage.main(null);
-			frmLogin.setVisible(false);
+			frmLogin.dispose();
 		}
 	}
 }
