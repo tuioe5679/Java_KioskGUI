@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import httpAPI.RestApi;
+import javax.swing.JButton;
 
 
 public class MangerPage {
@@ -87,5 +88,9 @@ public class MangerPage {
 		jscp1.setLocation(198,69);
 		jscp1.setSize(427,354);
 		Loginpanel.add(jscp1);
+		
+		JButton backBtn = new JButton("\uB4A4\uB85C\uAC00\uAE30");
+		backBtn.setBounds(43, 43, 95, 41);
+		Loginpanel.add(backBtn);
 	}
 }
