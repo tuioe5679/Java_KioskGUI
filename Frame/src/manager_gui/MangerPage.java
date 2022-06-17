@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 import httpAPI.RestApi;
 import javax.swing.JButton;
+import java.awt.Color;
 
 
 public class MangerPage {
@@ -90,6 +91,7 @@ public class MangerPage {
 		Loginpanel.add(jscp1);
 		
 		JButton backBtn = new JButton("\uB4A4\uB85C\uAC00\uAE30");
+		backBtn.setBackground(Color.WHITE);
 		backBtn.setBounds(43, 43, 95, 41);
 		Loginpanel.add(backBtn);
 	}
