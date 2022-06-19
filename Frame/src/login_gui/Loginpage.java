@@ -81,41 +81,41 @@ public class Loginpage implements ActionListener{
 		panel.add(TitelLabel);
 		
 		IdTextField = new JTextField();
-		IdTextField.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		IdTextField.setFont(new Font("ë‚˜ëˆ”ê³ ë”•", Font.PLAIN, 12));
 		IdTextField.setToolTipText("Enter ID");
 		IdTextField.setColumns(10);
 		IdTextField.setBounds(165, 85, 164, 30);
 		panel.add(IdTextField);
 		
 		JLabel idLabel = new JLabel("\uC544\uC774\uB514:");
-		idLabel.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		idLabel.setFont(new Font("ë‚˜ëˆ”ê³ ë”•", Font.PLAIN, 12));
 		idLabel.setBounds(122, 93, 36, 15);
 		panel.add(idLabel);
 		
 		JLabel passwordLlabel = new JLabel("\uBE44\uBC00\uBC88\uD638:");
-		passwordLlabel.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		passwordLlabel.setFont(new Font("ë‚˜ëˆ”ê³ ë”•", Font.PLAIN, 12));
 		passwordLlabel.setBounds(111, 127, 47, 15);
 		panel.add(passwordLlabel);
 		
 		JButton LoginBtn = new JButton("\uB85C\uADF8\uC778");
-		LoginBtn.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		LoginBtn.setFont(new Font("ë‚˜ëˆ”ê³ ë”•", Font.PLAIN, 12));
 		LoginBtn.setBackground(Color.WHITE);
 		LoginBtn.setBounds(255, 159, 74, 25);
 		panel.add(LoginBtn);
 		
 		JButton ManageLoginBtn = new JButton("\uAD00\uB9AC\uC790 \uB85C\uADF8\uC778");
-		ManageLoginBtn.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		ManageLoginBtn.setFont(new Font("ë‚˜ëˆ”ê³ ë”•", Font.PLAIN, 12));
 		ManageLoginBtn.setBackground(Color.WHITE);
 		ManageLoginBtn.setBounds(342, 85, 109, 65);
 		panel.add(ManageLoginBtn);
 		
 		passwordField = new JPasswordField();
-		passwordField.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		passwordField.setFont(new Font("ë‚˜ëˆ”ê³ ë”•", Font.PLAIN, 12));
 		passwordField.setBounds(165, 119, 164, 30);
 		panel.add(passwordField);
 		
 		JButton singupBtn = new JButton("\uD68C\uC6D0\uAC00\uC785");
-		singupBtn.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		singupBtn.setFont(new Font("ë‚˜ëˆ”ê³ ë”•", Font.PLAIN, 12));
 		singupBtn.setBackground(SystemColor.window);
 		singupBtn.setBounds(165, 159, 84, 25);
 		panel.add(singupBtn);
@@ -130,13 +130,13 @@ public class Loginpage implements ActionListener{
 		String text = e.getActionCommand();
 		
 		
-		if(text.equals("·Î±×ÀÎ")) {
+		if(text.equals("ë¡œê·¸ì¸")) {
 			UserMainPage userpage = new UserMainPage();
 			userpage.main(null);
 			frmLogin.dispose();
 		}
 		
-		else if(text.equals("°ü¸®ÀÚ ·Î±×ÀÎ")) {
+		else if(text.equals("ê´€ë¦¬ì ë¡œê·¸ì¸")) {
 			String urltext = IdTextField.getText();
 			char[] pwd = passwordField.getPassword();
 			for(int i=0;i<pwd.length;i++) {
@@ -154,14 +154,14 @@ public class Loginpage implements ActionListener{
 				frmLogin.dispose();
 			}
 			else {
-				JOptionPane.showConfirmDialog(null, "¾ÆÀÌµğ¿Í ÆĞ½º¿öµå¸¦ È®ÀÎÇØÁÖ¼¼¿ä","·Î±×ÀÎ ½ÇÆĞ",JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showConfirmDialog(null, "ì•„ì´ë””ì™€ íŒ¨ìŠ¤ì›Œë“œë¥¼ í™•ì¸í•´ì£¼ì„¸ìš”","ë¡œê·¸ì¸ ì‹¤íŒ¨",JOptionPane.WARNING_MESSAGE);
 			}
 		}
-		else if(text.equals("È¸¿ø°¡ÀÔ")) {
+		else if(text.equals("íšŒì›ê°€ì…")) {
 			SingUp singupPage = new SingUp();
 			singupPage.main(null);
 			frmLogin.dispose();
 		}
 	}
 }
-//Ãß°¡ÇßÀ½
+//ì¶”ê°€í–ˆìŒ

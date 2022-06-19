@@ -4,25 +4,18 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
-
-import org.json.JSONArray;
-
 import httpAPI.RestApi;
-
 import javax.swing.border.EtchedBorder;
-import java.awt.CardLayout;
 import java.awt.GridLayout;
 
 public class PaymentPage implements ActionListener {

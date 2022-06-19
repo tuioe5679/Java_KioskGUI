@@ -18,7 +18,7 @@ import user_gui.PaymentPage;
 public class RestApi {
 	
 	private static HttpURLConnection myConnet; 
-	private final static String localhostURL = "https://46eb-175-202-1-59.jp.ngrok.io";
+	private final static String localhostURL = "https://46eb-175-202-1-59.jp.ngrok.io/";
 	private static String index ="";
 	private static BufferedReader br;
 	private static StringBuilder sb;
@@ -39,12 +39,12 @@ public class RestApi {
 					sb = new StringBuilder();
 					line = null;
 					
-					while((line = br.readLine()) != null) { // ÀĞÀ» ¼ö ÀÖÀ» ¶§ ±îÁö ¹İº¹
+					while((line = br.readLine()) != null) { // ì½ì„ ìˆ˜ ìˆì„ ë•Œ ê¹Œì§€ ë°˜ë³µ
 						sb.append(line);
 					}
 					JSONArray array = new JSONArray(sb.toString());
 					for(int i=0;i<array.length();i++) {
-						JSONObject obj = array.getJSONObject(i); // jsonÀ¸·Î º¯°æ (¿ªÁ÷·ÄÈ­)
+						JSONObject obj = array.getJSONObject(i); // jsonìœ¼ë¡œ ë³€ê²½ (ì—­ì§ë ¬í™”)
 						index = (String) obj.get("id") + "," + (String) obj.get("pwd");
 					}
 					break;
@@ -65,7 +65,7 @@ public class RestApi {
 					sb = new StringBuilder();
 					line = null;
 					
-					while((line = br.readLine()) != null) { // ÀĞÀ» ¼ö ÀÖÀ» ¶§ ±îÁö ¹İº¹
+					while((line = br.readLine()) != null) { // ì½ì„ ìˆ˜ ìˆì„ ë•Œ ê¹Œì§€ ë°˜ë³µ
 						sb.append(line);
 					}
 					break;
@@ -105,7 +105,7 @@ public class RestApi {
 			sb = new StringBuilder();
 			line = null;
 			
-			while((line = br.readLine()) != null) { // ÀĞÀ» ¼ö ÀÖÀ» ¶§ ±îÁö ¹İº¹
+			while((line = br.readLine()) != null) { // ì½ì„ ìˆ˜ ìˆì„ ë•Œ ê¹Œì§€ ë°˜ë³µ
 				sb.append(line);
 			}
 			index = sb.toString();
@@ -135,7 +135,7 @@ public class RestApi {
 				sb = new StringBuilder();
 				line = null;
 				
-				while((line = br.readLine()) != null) { // ÀĞÀ» ¼ö ÀÖÀ» ¶§ ±îÁö ¹İº¹
+				while((line = br.readLine()) != null) { // ì½ì„ ìˆ˜ ìˆì„ ë•Œ ê¹Œì§€ ë°˜ë³µ
 					sb.append(line);
 				}
 				array = new JSONArray(sb.toString());
@@ -157,7 +157,7 @@ public class RestApi {
 				sb = new StringBuilder();
 				line = null;
 				
-				while((line = br.readLine()) != null) { // ÀĞÀ» ¼ö ÀÖÀ» ¶§ ±îÁö ¹İº¹
+				while((line = br.readLine()) != null) { // ì½ì„ ìˆ˜ ìˆì„ ë•Œ ê¹Œì§€ ë°˜ë³µ
 					sb.append(line);
 				}
 				PaymentPage.retrunvalue = sb.toString();
@@ -187,7 +187,7 @@ public class RestApi {
 				sb = new StringBuilder();
 				line = null;
 				
-				while((line = br.readLine()) != null) { // ÀĞÀ» ¼ö ÀÖÀ» ¶§ ±îÁö ¹İº¹
+				while((line = br.readLine()) != null) { // ì½ì„ ìˆ˜ ìˆì„ ë•Œ ê¹Œì§€ ë°˜ë³µ
 					sb.append(line);
 				}
 				array = new JSONArray(sb.toString());
@@ -222,9 +222,9 @@ public class RestApi {
 		
 		myConnet = (HttpURLConnection) SpringApi.openConnection();
 		myConnet.setRequestMethod(method);
-		myConnet.setRequestProperty("Content-Type", "application/json"); // header Content-Type Á¤º¸
-		myConnet.setRequestProperty("auth", "myAuth"); // headerÀÇ auth Á¤º¸
-		myConnet.setDoOutput(true); // ¼­¹ö·ÎºÎÅÍ ¹Ş´Â °ªÀÌ ÀÖ´Ù¸é true
+		myConnet.setRequestProperty("Content-Type", "application/json"); // header Content-Type ì •ë³´
+		myConnet.setRequestProperty("auth", "myAuth"); // headerì˜ auth ì •ë³´
+		myConnet.setDoOutput(true); // ì„œë²„ë¡œë¶€í„° ë°›ëŠ” ê°’ì´ ìˆë‹¤ë©´ true
 		myConnet.setDoInput(true);
 		return method;
 	}

@@ -24,7 +24,7 @@ import java.awt.Color;
 
 public class MangerPage implements ActionListener{
 
-	String[] header = {"ÁÖ¹®¹øÈ£","»óÇ°¸í","°¡°İ","°³¼ö"};
+	String[] header = {"ì£¼ë¬¸ë²ˆí˜¸","ìƒí’ˆëª…","ê°€ê²©","ê°œìˆ˜"};
 	private JFrame frame;
 	private JTable table_1;
 
@@ -62,7 +62,7 @@ public class MangerPage implements ActionListener{
 		String[][] value = new String[text.length()][4];
 		 for(int j=0;j<text.length();j++) {
 			 while(true){
-				 obj = text.getJSONObject(j); // jsonÀ¸·Î º¯°æ (¿ªÁ÷·ÄÈ­)
+				 obj = text.getJSONObject(j); // jsonìœ¼ë¡œ ë³€ê²½ (ì—­ì§ë ¬í™”)
 				 value[j][0] = obj.getString("ordernum");
 				 value[j][1] = obj.getString("name");
 				 value[j][2] = obj.getString("price");
@@ -82,7 +82,7 @@ public class MangerPage implements ActionListener{
 		Loginpanel.setLayout(null);
 		
 		JLabel TitleLabel = new JLabel("\uC8FC\uBB38\uD655\uC778");
-		TitleLabel.setFont(new Font("³ª´®°íµñ", Font.BOLD, 25));
+		TitleLabel.setFont(new Font("ë‚˜ëˆ”ê³ ë”•", Font.BOLD, 25));
 		TitleLabel.setBounds(352, 10, 135, 49);
 		Loginpanel.add(TitleLabel);
 		
@@ -95,7 +95,7 @@ public class MangerPage implements ActionListener{
 		Loginpanel.add(jscp1);
 		
 		JButton backBtn = new JButton("\uB4A4\uB85C\uAC00\uAE30");
-		backBtn.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		backBtn.setFont(new Font("ë‚˜ëˆ”ê³ ë”•", Font.PLAIN, 12));
 		backBtn.setBackground(Color.WHITE);
 		backBtn.setBounds(43, 43, 95, 41);
 		backBtn.setBorder(null);
@@ -106,7 +106,7 @@ public class MangerPage implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String text = e.getActionCommand();
-		if(text.equals("µÚ·Î°¡±â")) {
+		if(text.equals("ë’¤ë¡œê°€ê¸°")) {
 			frame.dispose();
 			Loginpage loginpage = new Loginpage();
 			loginpage.frmLogin.setVisible(true);

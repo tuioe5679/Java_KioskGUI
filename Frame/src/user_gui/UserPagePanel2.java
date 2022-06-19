@@ -3,13 +3,11 @@ package user_gui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
 import org.json.JSONArray;
 
 public class UserPagePanel2 {
@@ -39,7 +37,7 @@ public class UserPagePanel2 {
 
 			productNameListLabel[i] = new JLabel(UserMainPage.name[i]);
 			productNameListLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
-			productNameListLabel[i].setFont(new Font("≥™¥Æ∞ÌµÒ", Font.PLAIN, 12));
+			productNameListLabel[i].setFont(new Font("ÎÇòÎàîÍ≥†Îîï", Font.PLAIN, 12));
 			productNameListLabel[i].setBounds(12, 230, 186, 15);
 			productListPanel[i].add(productNameListLabel[i]);
 
@@ -50,8 +48,8 @@ public class UserPagePanel2 {
 			proudctListBtn[i].setBorder(null);
 			productListPanel[i].add(proudctListBtn[i]);
 
-			productPriceListLabel[i] = new JLabel(UserMainPage.price[i] + "ø¯");
-			productPriceListLabel[i].setFont(new Font("≥™¥Æ∞ÌµÒ", Font.PLAIN, 12));
+			productPriceListLabel[i] = new JLabel(UserMainPage.price[i] + "Ïõê");
+			productPriceListLabel[i].setFont(new Font("ÎÇòÎàîÍ≥†Îîï", Font.PLAIN, 12));
 			productPriceListLabel[i].setBounds(87, 255, 45, 15);
 			productListPanel[i].add(productPriceListLabel[i]);
 

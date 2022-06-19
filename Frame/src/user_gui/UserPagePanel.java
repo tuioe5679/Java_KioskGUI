@@ -44,7 +44,7 @@ public class UserPagePanel {
 
 			productNameListLabel[i] = new JLabel(UserMainPage.name[i]);
 			productNameListLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
-			productNameListLabel[i].setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+			productNameListLabel[i].setFont(new Font("ë‚˜ëˆ”ê³ ë”•", Font.PLAIN, 12));
 			productNameListLabel[i].setBounds(12, 230, 186, 15);
 			productListPanel[i].add(productNameListLabel[i]);
 
@@ -57,8 +57,8 @@ public class UserPagePanel {
 			productListPanel[i].add(proudctListBtn[i]);
 			
 
-			productPriceListLabel[i] = new JLabel(UserMainPage.price[i] + "¿ø");
-			productPriceListLabel[i].setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+			productPriceListLabel[i] = new JLabel(UserMainPage.price[i] + "ì›");
+			productPriceListLabel[i].setFont(new Font("ë‚˜ëˆ”ê³ ë”•", Font.PLAIN, 12));
 			productPriceListLabel[i].setBounds(87, 255, 45, 15);
 			productListPanel[i].add(productPriceListLabel[i]);
 			

@@ -72,7 +72,7 @@ public class SingUp implements ActionListener{
 		frmSingUp.getContentPane().add(panel);
 		
 		TitleLabel = new JLabel("\uD68C\uC6D0\uAC00\uC785");
-		TitleLabel.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 25));
+		TitleLabel.setFont(new Font("ë‚˜ëˆ”ê³ ë”•", Font.PLAIN, 25));
 		TitleLabel.setBounds(146, 28, 101, 38);
 		panel.add(TitleLabel);
 		
@@ -99,33 +99,33 @@ public class SingUp implements ActionListener{
 		panel.add(moneyTextField);
 		
 		JLabel idLabel = new JLabel("\uC544\uC774\uB514");
-		idLabel.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		idLabel.setFont(new Font("ë‚˜ëˆ”ê³ ë”•", Font.PLAIN, 12));
 		idLabel.setBounds(85, 82, 32, 15);
 		panel.add(idLabel);
 		
 		JLabel passwordLabel = new JLabel("\uBE44\uBC00\uBC88\uD638");
-		passwordLabel.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		passwordLabel.setFont(new Font("ë‚˜ëˆ”ê³ ë”•", Font.PLAIN, 12));
 		passwordLabel.setBounds(74, 121, 43, 15);
 		panel.add(passwordLabel);
 		
 		nameLabel = new JLabel("\uC774\uB984");
-		nameLabel.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		nameLabel.setFont(new Font("ë‚˜ëˆ”ê³ ë”•", Font.PLAIN, 12));
 		nameLabel.setBounds(95, 161, 22, 15);
 		panel.add(nameLabel);
 		
 		moneyLabel = new JLabel("\uD604\uC7AC \uC794\uACE0");
-		moneyLabel.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		moneyLabel.setFont(new Font("ë‚˜ëˆ”ê³ ë”•", Font.PLAIN, 12));
 		moneyLabel.setBounds(66, 201, 51, 15);
 		panel.add(moneyLabel);
 		
 		JButton cancelBtn = new JButton("\uCDE8\uC18C\uD558\uAE30");
-		cancelBtn.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		cancelBtn.setFont(new Font("ë‚˜ëˆ”ê³ ë”•", Font.PLAIN, 12));
 		cancelBtn.setBackground(Color.WHITE);
 		cancelBtn.setBounds(33, 254, 150, 30);
 		panel.add(cancelBtn);
 		
 		signupBtn = new JButton("\uD68C\uC6D0\uAC00\uC785");
-		signupBtn.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		signupBtn.setFont(new Font("ë‚˜ëˆ”ê³ ë”•", Font.PLAIN, 12));
 		signupBtn.setBackground(Color.WHITE);
 		signupBtn.setBounds(202, 254, 150, 30);
 		panel.add(signupBtn);
@@ -138,7 +138,7 @@ public class SingUp implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String text = e.getActionCommand();
 		
-		if(text.equals("È¸¿ø°¡ÀÔ")) {
+		if(text.equals("íšŒì›ê°€ì…")) {
 			Vector<String> memberV = new Vector<String>();
 			
 			memberV.add(idTextField.getText());
@@ -149,16 +149,16 @@ public class SingUp implements ActionListener{
 			if(!memberV.get(0).equals("")&&!memberV.get(1).equals("")&&!memberV.get(2).equals("")&&!memberV.get(3).equals("")) {
 				String index = RestApi.MemberDAO("members/post", memberV);
 				if(index.equals("")) {
-					JOptionPane.showConfirmDialog(null, "È¸¿ø°¡ÀÔ ¿Ï·á","¼º°ø",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showConfirmDialog(null, "íšŒì›ê°€ì… ì™„ë£Œ","ì„±ê³µ",JOptionPane.INFORMATION_MESSAGE);
 					frmSingUp.setVisible(false);
 					Loginpage.main(null);
 				}
 			}
 			else {
-					JOptionPane.showConfirmDialog(null, "È¸¿ø°¡ÀÔ¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù","°æ°í",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showConfirmDialog(null, "íšŒì›ê°€ì…ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤","ê²½ê³ ",JOptionPane.WARNING_MESSAGE);
 			}
 		}
-		else if(text.equals("Ãë¼ÒÇÏ±â")) {
+		else if(text.equals("ì·¨ì†Œí•˜ê¸°")) {
 			Loginpage loginP = new Loginpage();
 			loginP.main(null);
 			frmSingUp.setVisible(false);
