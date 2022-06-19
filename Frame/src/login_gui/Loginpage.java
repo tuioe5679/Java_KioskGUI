@@ -32,7 +32,7 @@ import javax.swing.SwingConstants;
 public class Loginpage implements ActionListener{
 
 	public JFrame frmLogin;
-	private JTextField textField_1;
+	private JTextField IdTextField;
 	private JPasswordField passwordField;
 	//as
 	/**
@@ -75,54 +75,54 @@ public class Loginpage implements ActionListener{
 		frmLogin.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("fall in coffee");
-		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 30));
-		lblNewLabel.setBounds(163, 10, 215, 58);
-		panel.add(lblNewLabel);
+		JLabel TitelLabel = new JLabel("fall in coffee");
+		TitelLabel.setFont(new Font("Dialog", Font.PLAIN, 30));
+		TitelLabel.setBounds(163, 10, 215, 58);
+		panel.add(TitelLabel);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
-		textField_1.setToolTipText("Enter ID");
-		textField_1.setColumns(10);
-		textField_1.setBounds(165, 85, 164, 30);
-		panel.add(textField_1);
+		IdTextField = new JTextField();
+		IdTextField.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		IdTextField.setToolTipText("Enter ID");
+		IdTextField.setColumns(10);
+		IdTextField.setBounds(165, 85, 164, 30);
+		panel.add(IdTextField);
 		
-		JLabel id_label = new JLabel("\uC544\uC774\uB514:");
-		id_label.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
-		id_label.setBounds(122, 93, 36, 15);
-		panel.add(id_label);
+		JLabel idLabel = new JLabel("\uC544\uC774\uB514:");
+		idLabel.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		idLabel.setBounds(122, 93, 36, 15);
+		panel.add(idLabel);
 		
-		JLabel password_label = new JLabel("\uBE44\uBC00\uBC88\uD638:");
-		password_label.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
-		password_label.setBounds(111, 127, 47, 15);
-		panel.add(password_label);
+		JLabel passwordLlabel = new JLabel("\uBE44\uBC00\uBC88\uD638:");
+		passwordLlabel.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		passwordLlabel.setBounds(111, 127, 47, 15);
+		panel.add(passwordLlabel);
 		
-		JButton Login_Btn = new JButton("\uB85C\uADF8\uC778");
-		Login_Btn.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
-		Login_Btn.setBackground(Color.WHITE);
-		Login_Btn.setBounds(255, 159, 74, 25);
-		panel.add(Login_Btn);
+		JButton LoginBtn = new JButton("\uB85C\uADF8\uC778");
+		LoginBtn.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		LoginBtn.setBackground(Color.WHITE);
+		LoginBtn.setBounds(255, 159, 74, 25);
+		panel.add(LoginBtn);
 		
-		JButton UserLogin_btn = new JButton("\uAD00\uB9AC\uC790 \uB85C\uADF8\uC778");
-		UserLogin_btn.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
-		UserLogin_btn.setBackground(Color.WHITE);
-		UserLogin_btn.setBounds(342, 85, 109, 65);
-		panel.add(UserLogin_btn);
+		JButton ManageLoginBtn = new JButton("\uAD00\uB9AC\uC790 \uB85C\uADF8\uC778");
+		ManageLoginBtn.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		ManageLoginBtn.setBackground(Color.WHITE);
+		ManageLoginBtn.setBounds(342, 85, 109, 65);
+		panel.add(ManageLoginBtn);
 		
 		passwordField = new JPasswordField();
 		passwordField.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
 		passwordField.setBounds(165, 119, 164, 30);
 		panel.add(passwordField);
 		
-		JButton singup_Btn = new JButton("\uD68C\uC6D0\uAC00\uC785");
-		singup_Btn.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
-		singup_Btn.setBackground(SystemColor.window);
-		singup_Btn.setBounds(165, 159, 84, 25);
-		panel.add(singup_Btn);
+		JButton singupBtn = new JButton("\uD68C\uC6D0\uAC00\uC785");
+		singupBtn.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		singupBtn.setBackground(SystemColor.window);
+		singupBtn.setBounds(165, 159, 84, 25);
+		panel.add(singupBtn);
 		
-		Login_Btn.addActionListener(this);
-		UserLogin_btn.addActionListener(this);
-		singup_Btn.addActionListener(this);
+		LoginBtn.addActionListener(this);
+		ManageLoginBtn.addActionListener(this);
+		singupBtn.addActionListener(this);
 	}
 
 	@Override
@@ -137,7 +137,7 @@ public class Loginpage implements ActionListener{
 		}
 		
 		else if(text.equals("°ü¸®ÀÚ ·Î±×ÀÎ")) {
-			String urltext = textField_1.getText();
+			String urltext = IdTextField.getText();
 			char[] pwd = passwordField.getPassword();
 			for(int i=0;i<pwd.length;i++) {
 				if(i==0) {

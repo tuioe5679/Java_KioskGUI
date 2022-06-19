@@ -6,16 +6,19 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Vector;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import user_gui.PaymentPage;
+
 public class RestApi {
 	
 	private static HttpURLConnection myConnet; 
-	private final static String localhostURL = "http://localhost:8080/";
+	private final static String localhostURL = "https://46eb-175-202-1-59.jp.ngrok.io";
 	private static String index ="";
 	private static BufferedReader br;
 	private static StringBuilder sb;
@@ -68,9 +71,49 @@ public class RestApi {
 					break;
 				case "DELETE":
 					br = new BufferedReader(new InputStreamReader(myConnet.getInputStream(),"UTF-8"));
-					break;
+					break;  
 			}	
 		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return index;
+	}
+	
+	public static String ordersDAOPost(String url,Vector<String> data) {
+		
+		URL SpringApi;
+		try {
+			SpringApi = new URL(localhostURL+url);
+			String url_spilt[] = url.split("/");
+			String Method;
+			
+			Method = setMethod(url_spilt[1],SpringApi);
+			
+			JSONObject obj = new JSONObject();
+			
+			obj.put("ordernum",data.get(0));
+			obj.put("name", data.get(1));
+			obj.put("price", data.get(2));
+			obj.put("count",data.get(3));
+			
+			bw = new BufferedWriter(new OutputStreamWriter(myConnet.getOutputStream(),"UTF-8"));
+			bw.write(obj.toString());
+			bw.flush();
+			bw.close();
+			
+			br = new BufferedReader(new InputStreamReader(myConnet.getInputStream()));
+			sb = new StringBuilder();
+			line = null;
+			
+			while((line = br.readLine()) != null) { // 읽을 수 있을 때 까지 반복
+				sb.append(line);
+			}
+			index = sb.toString();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return index;
@@ -117,7 +160,7 @@ public class RestApi {
 				while((line = br.readLine()) != null) { // 읽을 수 있을 때 까지 반복
 					sb.append(line);
 				}
-				index = sb.toString();
+				PaymentPage.retrunvalue = sb.toString();
 				break;
 			case "DELETE":
 				br = new BufferedReader(new InputStreamReader(myConnet.getInputStream(),"UTF-8"));
@@ -136,7 +179,7 @@ public class RestApi {
 			String url_spilt[] = url.split("/");
 			String Method;
 			
-			Method = setMethod(url_spilt[0],SpringApi);
+			Method = setMethod(url_spilt[1],SpringApi);
 			
 			switch(Method) {
 			case "GET":
@@ -148,28 +191,6 @@ public class RestApi {
 					sb.append(line);
 				}
 				array = new JSONArray(sb.toString());
-				break;
-			case "POST":
-				JSONObject obj = new JSONObject();
-				
-				obj.put("ordernum",data.get(0));
-				obj.put("name", data.get(1));
-				obj.put("price", data.get(2));
-				obj.put("count",data.get(3));
-				
-				bw = new BufferedWriter(new OutputStreamWriter(myConnet.getOutputStream(),"UTF-8"));
-				bw.write(obj.toString());
-				bw.flush();
-				bw.close();
-				
-				br = new BufferedReader(new InputStreamReader(myConnet.getInputStream()));
-				sb = new StringBuilder();
-				line = null;
-				
-				while((line = br.readLine()) != null) { // 읽을 수 있을 때 까지 반복
-					sb.append(line);
-				}
-				index = sb.toString();
 				break;
 			case "DELETE":
 				br = new BufferedReader(new InputStreamReader(myConnet.getInputStream(),"UTF-8"));

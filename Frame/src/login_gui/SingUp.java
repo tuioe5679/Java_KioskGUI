@@ -21,14 +21,14 @@ public class SingUp implements ActionListener{
 
 	private JFrame frmSingUp;
 	private JPanel panel;
-	private JLabel lblNewLabel;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JLabel lblNewLabel_3;
-	private JLabel lblNewLabel_4;
-	private JButton btnNewButton_1;
+	private JLabel TitleLabel;
+	private JTextField idTextField;
+	private JTextField passwordTextField;
+	private JTextField nameTextField;
+	private JTextField moneyTextField;
+	private JLabel nameLabel;
+	private JLabel moneyLabel;
+	private JButton signupBtn;
 
 	/**
 	 * Launch the application.
@@ -71,67 +71,67 @@ public class SingUp implements ActionListener{
 		panel.setBounds(115, 10, 404, 327);
 		frmSingUp.getContentPane().add(panel);
 		
-		lblNewLabel = new JLabel("\uD68C\uC6D0\uAC00\uC785");
-		lblNewLabel.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 25));
-		lblNewLabel.setBounds(146, 28, 101, 38);
-		panel.add(lblNewLabel);
+		TitleLabel = new JLabel("\uD68C\uC6D0\uAC00\uC785");
+		TitleLabel.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 25));
+		TitleLabel.setBounds(146, 28, 101, 38);
+		panel.add(TitleLabel);
 		
-		textField = new JTextField();
-		textField.setHorizontalAlignment(SwingConstants.LEFT);
-		textField.setToolTipText("");
-		textField.setColumns(10);
-		textField.setBounds(125, 78, 165, 25);
-		panel.add(textField);
+		idTextField = new JTextField();
+		idTextField.setHorizontalAlignment(SwingConstants.LEFT);
+		idTextField.setToolTipText("");
+		idTextField.setColumns(10);
+		idTextField.setBounds(125, 78, 165, 25);
+		panel.add(idTextField);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(125, 116, 165, 25);
-		panel.add(textField_1);
+		passwordTextField = new JTextField();
+		passwordTextField.setColumns(10);
+		passwordTextField.setBounds(125, 116, 165, 25);
+		panel.add(passwordTextField);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(125, 156, 165, 25);
-		panel.add(textField_2);
+		nameTextField = new JTextField();
+		nameTextField.setColumns(10);
+		nameTextField.setBounds(125, 156, 165, 25);
+		panel.add(nameTextField);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(125, 196, 165, 25);
-		panel.add(textField_3);
+		moneyTextField = new JTextField();
+		moneyTextField.setColumns(10);
+		moneyTextField.setBounds(125, 196, 165, 25);
+		panel.add(moneyTextField);
 		
-		JLabel lblNewLabel_1 = new JLabel("\uC544\uC774\uB514");
-		lblNewLabel_1.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
-		lblNewLabel_1.setBounds(85, 82, 32, 15);
-		panel.add(lblNewLabel_1);
+		JLabel idLabel = new JLabel("\uC544\uC774\uB514");
+		idLabel.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		idLabel.setBounds(85, 82, 32, 15);
+		panel.add(idLabel);
 		
-		JLabel lblNewLabel_2 = new JLabel("\uBE44\uBC00\uBC88\uD638");
-		lblNewLabel_2.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
-		lblNewLabel_2.setBounds(74, 121, 43, 15);
-		panel.add(lblNewLabel_2);
+		JLabel passwordLabel = new JLabel("\uBE44\uBC00\uBC88\uD638");
+		passwordLabel.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		passwordLabel.setBounds(74, 121, 43, 15);
+		panel.add(passwordLabel);
 		
-		lblNewLabel_3 = new JLabel("\uC774\uB984");
-		lblNewLabel_3.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
-		lblNewLabel_3.setBounds(95, 161, 22, 15);
-		panel.add(lblNewLabel_3);
+		nameLabel = new JLabel("\uC774\uB984");
+		nameLabel.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		nameLabel.setBounds(95, 161, 22, 15);
+		panel.add(nameLabel);
 		
-		lblNewLabel_4 = new JLabel("\uD604\uC7AC \uC794\uACE0");
-		lblNewLabel_4.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
-		lblNewLabel_4.setBounds(66, 201, 51, 15);
-		panel.add(lblNewLabel_4);
+		moneyLabel = new JLabel("\uD604\uC7AC \uC794\uACE0");
+		moneyLabel.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		moneyLabel.setBounds(66, 201, 51, 15);
+		panel.add(moneyLabel);
 		
-		JButton btnNewButton = new JButton("\uCDE8\uC18C\uD558\uAE30");
-		btnNewButton.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
-		btnNewButton.setBackground(Color.WHITE);
-		btnNewButton.setBounds(33, 254, 150, 30);
-		panel.add(btnNewButton);
+		JButton cancelBtn = new JButton("\uCDE8\uC18C\uD558\uAE30");
+		cancelBtn.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		cancelBtn.setBackground(Color.WHITE);
+		cancelBtn.setBounds(33, 254, 150, 30);
+		panel.add(cancelBtn);
 		
-		btnNewButton_1 = new JButton("\uD68C\uC6D0\uAC00\uC785");
-		btnNewButton_1.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
-		btnNewButton_1.setBackground(Color.WHITE);
-		btnNewButton_1.setBounds(202, 254, 150, 30);
-		panel.add(btnNewButton_1);
+		signupBtn = new JButton("\uD68C\uC6D0\uAC00\uC785");
+		signupBtn.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
+		signupBtn.setBackground(Color.WHITE);
+		signupBtn.setBounds(202, 254, 150, 30);
+		panel.add(signupBtn);
 		
-		btnNewButton_1.addActionListener(this);
-		btnNewButton.addActionListener(this);
+		signupBtn.addActionListener(this);
+		cancelBtn.addActionListener(this);
 	}
 
 	@Override
@@ -141,10 +141,10 @@ public class SingUp implements ActionListener{
 		if(text.equals("È¸¿ø°¡ÀÔ")) {
 			Vector<String> memberV = new Vector<String>();
 			
-			memberV.add(textField.getText());
-			memberV.add(textField_1.getText());
-			memberV.add(textField_2.getText());
-			memberV.add(textField_3.getText());
+			memberV.add(idTextField.getText());
+			memberV.add(passwordTextField.getText());
+			memberV.add(nameTextField.getText());
+			memberV.add(moneyTextField.getText());
 			 
 			if(!memberV.get(0).equals("")&&!memberV.get(1).equals("")&&!memberV.get(2).equals("")&&!memberV.get(3).equals("")) {
 				String index = RestApi.MemberDAO("members/post", memberV);

@@ -6,8 +6,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.Map;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,14 +14,45 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import httpAPI.RestApi;
 import login_gui.Loginpage;
 
 public class UserMainPage implements ActionListener {
 
 	public JFrame frame;
+	public JPanel panel_2;
+	public JPanel panel;
+	public JPanel panel_6;
+	
+	int totalprice = 0;
+	int num[] = {1,1,1,1,1};
+	static int count = 0;
+	
+	JPanel ListPanel[];
+	static JLabel productName[];
+	static JLabel productPrice[];
+	static JLabel productCount[];
+	static JLabel totalPrice;
+	JButton plus[];
+	JButton minus[];
+	JButton delete[];
+	
+	static String index[];
+	static String name[];
+	static String id[];
+	static String price[];
+	static String image[];
+	
+	static JButton proudctListBtn[];
+	
+	UserPagePanel panels;
+	UserPagePanel2 panels2;
+	UserPagePanel3 panels3;
 
 	/**
 	 * Launch the application.
@@ -43,39 +73,56 @@ public class UserMainPage implements ActionListener {
 	/**
 	 * Create the application.
 	 */
+	public UserMainPage(String a) {
+		
+	}
 	public UserMainPage() {
 		initialize();
+	}
+	
+	public static JSONArray ProudctList() {
+		JSONArray array = RestApi.productDAO("product/all", null);
+		String spiltvlaue[];
+		index = new String[array.length()];
+		name = new String[array.length()];
+		id = new String[array.length()];
+		price = new String[array.length()];
+		image = new String[array.length()];
+
+		for (int i = 0; i < array.length(); i++) {
+			JSONObject obj = array.getJSONObject(i); 
+			index[i] = (String) obj.get("id") + "," + (String) obj.get("name") + "," + (String) obj.get("price") + ","
+					+ (String) obj.get("image");
+		}
+		for (int i = 0; i < array.length(); i++) {
+			spiltvlaue = index[i].split(",");
+			id[i] = spiltvlaue[0];
+			name[i] = spiltvlaue[1];
+			price[i] = spiltvlaue[2];
+			image[i] = spiltvlaue[3];
+		}
+		return array;
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-//		Map<String, String> map = new HashMap<String, String>();
-//		JSONArray array = RestApi.productDAO("product/all", null);
-//		String index[] = new String[array.length()];
-//		String spiltvlaue[];
-//		String name[] = new String[array.length()];
-//		String id[] = new String[array.length()];
-//		String price[] = new String[array.length()];
-//		String image[] = new String[array.length()];
-//
-//		for (int i = 0; i < array.length(); i++) {
-//			JSONObject obj = array.getJSONObject(i); // json���� ���� (������ȭ)
-//			index[i] = (String) obj.get("id") + "," + (String) obj.get("name") + "," + (String) obj.get("price") + ","
-//					+ (String) obj.get("image");
-//		}
-//		for (int i = 0; i < array.length(); i++) {
-//			spiltvlaue = index[i].split(",");
-//			name[i] = spiltvlaue[0];
-//			id[i] = spiltvlaue[1];
-//			price[i] = spiltvlaue[2];
-//			image[i] = spiltvlaue[3];
-//		}
-//
-//		for (int i = 0; i < array.length(); i++) {
-//			System.out.println(name[i] + " " + id[i] + " " + price[i] + " " + image[i]);
-//		}
+	
+		JSONArray array = UserMainPage.ProudctList();
+		JPanel productListPanel[] = new JPanel[array.length()];
+		JLabel productNameListLabel[] = new JLabel[array.length()];
+		proudctListBtn = new JButton[array.length()]; 
+		JLabel productPriceListLabel[] = new JLabel[array.length()];
+		
+		
+		ListPanel = new JPanel[array.length()];
+		productName = new JLabel[array.length()];
+		productPrice = new JLabel[array.length()];
+		productCount = new JLabel[array.length()];
+		plus = new JButton[array.length()];
+		minus = new JButton[array.length()];
+		delete = new JButton[array.length()];
 
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.DARK_GRAY);
@@ -83,497 +130,315 @@ public class UserMainPage implements ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
 		panel.setBounds(0, 0, 884, 40);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Fall in Coffee");
-		lblNewLabel.setForeground(new Color(51, 102, 255));
-		lblNewLabel.setFont(new Font("����������", Font.PLAIN, 18));
-		lblNewLabel.setBackground(Color.CYAN);
-		lblNewLabel.setBounds(400, 10, 166, 20);
-		panel.add(lblNewLabel);
+		JLabel TitleLabel = new JLabel("Fall in Coffee");
+		TitleLabel.setForeground(new Color(51, 102, 255));
+		TitleLabel.setFont(new Font("나눔고딕", Font.BOLD, 20));
+		TitleLabel.setBackground(Color.CYAN);
+		TitleLabel.setBounds(400, 10, 166, 20);
+		panel.add(TitleLabel);
 
-		JButton btnNewButton_6 = new JButton("\uB4A4\uB85C\uAC00\uAE30"); // �ڷΰ���
-		btnNewButton_6.setBackground(Color.WHITE);
-		btnNewButton_6.setBounds(12, 10, 103, 24);
-		btnNewButton_6.addActionListener(this);
-		panel.add(btnNewButton_6);
+		JButton backBtn = new JButton("\uB4A4\uB85C\uAC00\uAE30"); // 占쌘로곤옙占쏙옙
+		backBtn.setFont(new Font("나눔고딕", Font.PLAIN, 12));
+		backBtn.setBackground(Color.WHITE);
+		backBtn.setBounds(12, 10, 103, 24);
+		backBtn.addActionListener(this);
+		panel.add(backBtn);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(0, 39, 884, 33);
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(new GridLayout(0, 4, 0, 0));
 
-		JButton btnNewButton = new JButton("Ŀ��");
-		btnNewButton.setFont(new Font("�������", Font.PLAIN, 15));
-		btnNewButton.setBackground(Color.WHITE);
-		btnNewButton.setBorder(null);
-		panel_1.add(btnNewButton);
+		JButton menuBtn1 = new JButton("\uCEE4\uD53C");
+		menuBtn1.setFont(new Font("나눔고딕", Font.PLAIN, 15));
+		menuBtn1.setBackground(Color.WHITE);
+		menuBtn1.setBorder(null);
+		panel_1.add(menuBtn1);
+		menuBtn1.addActionListener(this);
 
-		JButton btnNewButton_1 = new JButton("��,���ݸ�,Ƽ");
-		btnNewButton_1.setFont(new Font("�������", Font.PLAIN, 15));
-		btnNewButton_1.setBackground(Color.WHITE);
-		btnNewButton_1.setBorder(null);
-		panel_1.add(btnNewButton_1);
+		JButton menuBtn2 = new JButton("\uC2A4\uD30C\uD074\uB9C1");
+		menuBtn2.setFont(new Font("나눔고딕", Font.PLAIN, 15));
+		menuBtn2.setBackground(Color.WHITE);
+		menuBtn2.setBorder(null);
+		panel_1.add(menuBtn2);
+		menuBtn2.addActionListener(this);
 
-		JButton btnNewButton_2 = new JButton("���� �� �����");
-		btnNewButton_2.setFont(new Font("�������", Font.PLAIN, 15));
-		btnNewButton_2.setBackground(Color.WHITE);
-		btnNewButton_2.setBorder(null);
-		panel_1.add(btnNewButton_2);
+		JButton MenuBtn3 = new JButton("\uBE59\uC218 \uBC0F \uC2A4\uBB34\uB514");
+		MenuBtn3.setFont(new Font("나눔고딕", Font.PLAIN, 15));
+		MenuBtn3.setBackground(Color.WHITE);
+		MenuBtn3.setBorder(null);
+		panel_1.add(MenuBtn3);
+		MenuBtn3.addActionListener(this);
 
-		JButton btnNewButton_3 = new JButton("����Ŭ��");
-		btnNewButton_3.setFont(new Font("�������", Font.PLAIN, 15));
-		btnNewButton_3.setBackground(Color.WHITE);
-		btnNewButton_3.setBorder(null);
-		panel_1.add(btnNewButton_3);
+		JButton MenuBtn4 = new JButton("\uB77C\uB5BC,\uCD08\uCF5C\uB9BF,\uD2F0");
+		MenuBtn4.setFont(new Font("나눔고딕", Font.PLAIN, 15));
+		MenuBtn4.setBackground(Color.WHITE);
+		MenuBtn4.setBorder(null);
+		panel_1.add(MenuBtn4);
+		MenuBtn4.addActionListener(this);
+		
+		panels = new UserPagePanel();
+		panels2 = new UserPagePanel2();
+		panels3 = new UserPagePanel3();
 
-		JPanel panel_2 = new JPanel();
+		panel_2 = new JPanel();
 		panel_2.setBackground(Color.DARK_GRAY);
 		panel_2.setBounds(7, 82, 870, 600);
+		frame.getContentPane().add(panels.panel_2);
+		frame.getContentPane().add(panels2.panel_2);
+		frame.getContentPane().add(panels3.panel_2);
 		frame.getContentPane().add(panel_2);
 		panel_2.setLayout(new GridLayout(0, 4, 10, 10));
+		
+		panels.panel_2.setVisible(false);
+		panels2.panel_2.setVisible(false);
+		panels3.panel_2.setVisible(false);
+		
+		for(int i=0;i<8;i++) {
+			productListPanel[i] = new JPanel();
+			productListPanel[i].setBackground(Color.LIGHT_GRAY);
 
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(Color.LIGHT_GRAY);
+			productNameListLabel[i] = new JLabel(name[i]);
+			productNameListLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
+			productNameListLabel[i].setFont(new Font("나눔고딕", Font.PLAIN, 12));
+			productNameListLabel[i].setBounds(12, 230, 186, 15);
+			productListPanel[i].add(productNameListLabel[i]);
 
-		panel_2.add(panel_3);
-		panel_3.setLayout(null);
+			proudctListBtn[i] = new JButton("");
+			proudctListBtn[i].setIcon(new ImageIcon("img/"+image[i]));
+			proudctListBtn[i].setBackground(new Color(255, 255, 255));
+			proudctListBtn[i].setBounds(0, 0, 210, 210);
+			proudctListBtn[i].setBorder(null);
+			proudctListBtn[i].addActionListener(this);
+			
+			productListPanel[i].add(proudctListBtn[i]);
+			
 
-		JLabel lblNewLabel_1 = new JLabel("\uB354\uBE14\uC0F7 \uBC14\uB2D0\uB77C \uB51C\uB77C\uC774\uD2B8");
-		lblNewLabel_1.setFont(new Font("�������", Font.PLAIN, 12));
-		lblNewLabel_1.setBounds(45, 230, 139, 15);
-		panel_3.add(lblNewLabel_1);
-
-		JButton btnNewButton_4 = new JButton("");
-		btnNewButton_4.setIcon(new ImageIcon(
-				"C:\\Users\\\uC774\uD55C\\Desktop\\\uC790\uBC14\uCE74\uD398 \uBA54\uB274 \uC218\uC815\uBCF8\\\uCEE4\uD53C\\\uB354\uBE14\uC0F7 \uBC14\uB2D0\uB77C \uB51C\uB77C\uC774\uD2B8.png"));
-		btnNewButton_4.setBackground(new Color(255, 255, 255));
-		btnNewButton_4.setBounds(0, 0, 210, 210);
-		btnNewButton_4.setBorder(null);
-		panel_3.add(btnNewButton_4);
-
-		JLabel lblNewLabel_1_8 = new JLabel("5000\uC6D0");
-		lblNewLabel_1_8.setBounds(87, 255, 45, 15);
-		panel_3.add(lblNewLabel_1_8);
-
-		JPanel panel_3_1 = new JPanel();
-		panel_3_1.setBackground(Color.LIGHT_GRAY);
-		panel_2.add(panel_3_1);
-		panel_3_1.setLayout(null);
-
-		JLabel lblNewLabel_1_1 = new JLabel("\uB514\uCE74\uD398\uC778 \uBC14\uB2D0\uB77C \uB51C\uB77C\uC774\uD2B8");
-		lblNewLabel_1_1.setFont(new Font("�������", Font.PLAIN, 12));
-		lblNewLabel_1_1.setBounds(35, 230, 146, 15);
-		panel_3_1.add(lblNewLabel_1_1);
-
-		JButton btnNewButton_4_1 = new JButton("");
-		btnNewButton_4_1.setIcon(new ImageIcon(
-				"C:\\Users\\\uC774\uD55C\\Desktop\\\uC790\uBC14\uCE74\uD398 \uBA54\uB274 \uC218\uC815\uBCF8\\\uCEE4\uD53C\\\uB514\uCE74\uD398\uC778 \uBC14\uB2D0\uB77C \uB51C\uB77C\uC774\uD2B8.png"));
-		btnNewButton_4_1.setBounds(0, 0, 210, 210);
-		btnNewButton_4_1.setBackground(Color.WHITE);
-		btnNewButton_4_1.setBorder(null);
-		panel_3_1.add(btnNewButton_4_1);
-
-		JLabel lblNewLabel_1_8_1 = new JLabel("5500\uC6D0");
-		lblNewLabel_1_8_1.setBounds(87, 255, 45, 15);
-		panel_3_1.add(lblNewLabel_1_8_1);
-
-		JPanel panel_3_2 = new JPanel();
-		panel_3_2.setBackground(Color.LIGHT_GRAY);
-		panel_2.add(panel_3_2);
-		panel_3_2.setLayout(null);
-
-		JButton btnNewButton_4_1_1 = new JButton("");
-		btnNewButton_4_1_1.setIcon(new ImageIcon(
-				"C:\\Users\\\uC774\uD55C\\Desktop\\\uC790\uBC14\uCE74\uD398 \uBA54\uB274 \uC218\uC815\uBCF8\\\uCEE4\uD53C\\\uB514\uCE74\uD398\uC778 \uCE74\uD398\uB77C\uB5BC.png"));
-		btnNewButton_4_1_1.setBackground(Color.WHITE);
-		btnNewButton_4_1_1.setBounds(0, 0, 210, 210);
-		btnNewButton_4_1_1.setBorder(null);
-		panel_3_2.add(btnNewButton_4_1_1);
-
-		JLabel lblNewLabel_1_2 = new JLabel("\uB354\uBE14\uC0F7 \uBC14\uB2D0\uB77C \uB51C\uB77C\uC774\uD2B8");
-		lblNewLabel_1_2.setFont(new Font("�������", Font.PLAIN, 12));
-		lblNewLabel_1_2.setBounds(45, 230, 139, 15);
-		panel_3_2.add(lblNewLabel_1_2);
-
-		JLabel lblNewLabel_1_8_2 = new JLabel("5000\uC6D0");
-		lblNewLabel_1_8_2.setBounds(87, 257, 45, 15);
-		panel_3_2.add(lblNewLabel_1_8_2);
-
-		JPanel panel_3_3 = new JPanel();
-		panel_3_3.setBackground(Color.LIGHT_GRAY);
-		panel_2.add(panel_3_3);
-		panel_3_3.setLayout(null);
-
-		JButton btnNewButton_4_1_1_1 = new JButton("");
-		btnNewButton_4_1_1_1.setIcon(new ImageIcon(
-				"C:\\Users\\\uC774\uD55C\\Desktop\\\uC790\uBC14\uCE74\uD398 \uBA54\uB274 \uC218\uC815\uBCF8\\\uCEE4\uD53C\\\uC544\uD3EC\uAC00\uD1A0.png"));
-		btnNewButton_4_1_1_1.setBackground(Color.WHITE);
-		btnNewButton_4_1_1_1.setBounds(0, 0, 210, 210);
-		btnNewButton_4_1_1_1.setBorder(null);
-		panel_3_3.add(btnNewButton_4_1_1_1);
-
-		JLabel lblNewLabel_1_3 = new JLabel("\uB354\uBE14\uC0F7 \uBC14\uB2D0\uB77C \uB51C\uB77C\uC774\uD2B8");
-		lblNewLabel_1_3.setFont(new Font("�������", Font.PLAIN, 12));
-		lblNewLabel_1_3.setBounds(45, 230, 139, 15);
-		panel_3_3.add(lblNewLabel_1_3);
-
-		JLabel lblNewLabel_1_8_3 = new JLabel("5000\uC6D0");
-		lblNewLabel_1_8_3.setBounds(97, 256, 45, 15);
-		panel_3_3.add(lblNewLabel_1_8_3);
-
-		JPanel panel_3_4 = new JPanel();
-		panel_3_4.setBackground(Color.LIGHT_GRAY);
-		panel_2.add(panel_3_4);
-		panel_3_4.setLayout(null);
-
-		JButton btnNewButton_4_1_1_2 = new JButton("");
-		btnNewButton_4_1_1_2.setIcon(new ImageIcon(
-				"C:\\Users\\\uC774\uD55C\\Desktop\\\uC790\uBC14\uCE74\uD398 \uBA54\uB274 \uC218\uC815\uBCF8\\\uCEE4\uD53C\\\uC5D0\uC2A4\uD504\uB808\uC18C.png"));
-		btnNewButton_4_1_1_2.setBackground(Color.WHITE);
-		btnNewButton_4_1_1_2.setBounds(0, 0, 210, 210);
-		btnNewButton_4_1_1_2.setBorder(null);
-		panel_3_4.add(btnNewButton_4_1_1_2);
-
-		JLabel lblNewLabel_1_4 = new JLabel("\uB354\uBE14\uC0F7 \uBC14\uB2D0\uB77C \uB51C\uB77C\uC774\uD2B8");
-		lblNewLabel_1_4.setFont(new Font("�������", Font.PLAIN, 12));
-		lblNewLabel_1_4.setBounds(45, 230, 139, 15);
-		panel_3_4.add(lblNewLabel_1_4);
-
-		JLabel lblNewLabel_1_8_4 = new JLabel("5000\uC6D0");
-		lblNewLabel_1_8_4.setBounds(87, 257, 45, 15);
-		panel_3_4.add(lblNewLabel_1_8_4);
-
-		JPanel panel_3_5 = new JPanel();
-		panel_3_5.setBackground(Color.LIGHT_GRAY);
-		panel_2.add(panel_3_5);
-		panel_3_5.setLayout(null);
-
-		JButton btnNewButton_4_1_1_3 = new JButton("");
-		btnNewButton_4_1_1_3.setIcon(new ImageIcon(
-				"C:\\Users\\\uC774\uD55C\\Desktop\\\uC790\uBC14\uCE74\uD398 \uBA54\uB274 \uC218\uC815\uBCF8\\\uCEE4\uD53C\\\uCE74\uB77C\uBA5C \uB9C8\uD0A4\uC544\uB610.png"));
-		btnNewButton_4_1_1_3.setBackground(Color.WHITE);
-		btnNewButton_4_1_1_3.setBounds(0, 0, 210, 210);
-		btnNewButton_4_1_1_3.setBorder(null);
-		panel_3_5.add(btnNewButton_4_1_1_3);
-
-		JLabel lblNewLabel_1_5 = new JLabel("\uB354\uBE14\uC0F7 \uBC14\uB2D0\uB77C \uB51C\uB77C\uC774\uD2B8");
-		lblNewLabel_1_5.setFont(new Font("�������", Font.PLAIN, 12));
-		lblNewLabel_1_5.setBounds(45, 230, 139, 15);
-		panel_3_5.add(lblNewLabel_1_5);
-
-		JLabel lblNewLabel_1_8_5 = new JLabel("5000\uC6D0");
-		lblNewLabel_1_8_5.setBounds(87, 257, 45, 15);
-		panel_3_5.add(lblNewLabel_1_8_5);
-
-		JPanel panel_3_6 = new JPanel();
-		panel_3_6.setBackground(Color.LIGHT_GRAY);
-		panel_2.add(panel_3_6);
-		panel_3_6.setLayout(null);
-
-		JButton btnNewButton_4_1_1_4 = new JButton("");
-		btnNewButton_4_1_1_4.setIcon(new ImageIcon(
-				"C:\\Users\\\uC774\uD55C\\Desktop\\\uC790\uBC14\uCE74\uD398 \uBA54\uB274 \uC218\uC815\uBCF8\\\uCEE4\uD53C\\\uCE74\uD398\uBAA8\uCE74.png"));
-		btnNewButton_4_1_1_4.setBackground(Color.WHITE);
-		btnNewButton_4_1_1_4.setBounds(0, 0, 210, 210);
-		btnNewButton_4_1_1_4.setBorder(null);
-		panel_3_6.add(btnNewButton_4_1_1_4);
-
-		JLabel lblNewLabel_1_6 = new JLabel("\uB354\uBE14\uC0F7 \uBC14\uB2D0\uB77C \uB51C\uB77C\uC774\uD2B8");
-		lblNewLabel_1_6.setFont(new Font("�������", Font.PLAIN, 12));
-		lblNewLabel_1_6.setBounds(45, 230, 139, 15);
-		panel_3_6.add(lblNewLabel_1_6);
-
-		JLabel lblNewLabel_1_8_6 = new JLabel("5000\uC6D0");
-		lblNewLabel_1_8_6.setBounds(87, 256, 45, 15);
-		panel_3_6.add(lblNewLabel_1_8_6);
-
-		JPanel panel_3_7 = new JPanel();
-		panel_3_7.setBackground(Color.LIGHT_GRAY);
-		panel_2.add(panel_3_7);
-		panel_3_7.setLayout(null);
-
-		JButton btnNewButton_4_1_1_5 = new JButton("");
-		btnNewButton_4_1_1_5.setIcon(new ImageIcon(
-				"C:\\Users\\\uC774\uD55C\\Desktop\\\uC790\uBC14\uCE74\uD398 \uBA54\uB274 \uC218\uC815\uBCF8\\\uCEE4\uD53C\\\uCF5C\uB4DC\uBE0C\uB8E8.png"));
-		btnNewButton_4_1_1_5.setBackground(Color.WHITE);
-		btnNewButton_4_1_1_5.setBounds(0, 0, 210, 210);
-		btnNewButton_4_1_1_5.setBorder(null);
-		panel_3_7.add(btnNewButton_4_1_1_5);
-
-		JLabel lblNewLabel_1_7 = new JLabel("\uB354\uBE14\uC0F7 \uBC14\uB2D0\uB77C \uB51C\uB77C\uC774\uD2B8");
-		lblNewLabel_1_7.setFont(new Font("�������", Font.PLAIN, 12));
-		lblNewLabel_1_7.setBounds(45, 230, 139, 15);
-		panel_3_7.add(lblNewLabel_1_7);
-
-		JLabel lblNewLabel_1_8_7 = new JLabel("5000\uC6D0");
-		lblNewLabel_1_8_7.setBounds(87, 258, 45, 15);
-		panel_3_7.add(lblNewLabel_1_8_7);
-
+			productPriceListLabel[i] = new JLabel(price[i]+"원");
+			productPriceListLabel[i].setFont(new Font("나눔고딕", Font.PLAIN, 12));
+			productPriceListLabel[i].setBounds(87, 255, 45, 15);
+			productListPanel[i].add(productPriceListLabel[i]);
+			
+			panel_2.add(productListPanel[i]);
+			productListPanel[i].setLayout(null);
+		}
+		
+		for(int i=8;i<15;i++) {
+			proudctListBtn[i] = panels.proudctListBtn[i];
+			panels.proudctListBtn[i].addActionListener(this);
+		}
+		for(int i=15;i<20;i++) {
+			proudctListBtn[i] = panels2.proudctListBtn[i];
+			panels2.proudctListBtn[i].addActionListener(this);
+		}
+		for(int i=20;i<28;i++) {
+			proudctListBtn[i] = panels3.proudctListBtn[i];
+			panels3.proudctListBtn[i].addActionListener(this);
+		}
+		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBackground(Color.LIGHT_GRAY);
 		panel_4.setBounds(0, 692, 884, 260);
 		frame.getContentPane().add(panel_4);
 		panel_4.setLayout(null);
 
-		JButton btnNewButton_5 = new JButton("New button");
-		btnNewButton_5.setBorder(null);
-		btnNewButton_5.setBackground(Color.WHITE);
-		btnNewButton_5.setFont(new Font("�������", Font.PLAIN, 12));
-		btnNewButton_5.setBounds(595, 10, 120, 50);
-		btnNewButton_5.setBorder(null);
-		panel_4.add(btnNewButton_5);
+		JButton deleteBtn = new JButton("전체 삭제");
+		deleteBtn.setBorder(null);
+		deleteBtn.setBackground(Color.WHITE);
+		deleteBtn.setFont(new Font("나눔고딕", Font.PLAIN, 12));
+		deleteBtn.setBounds(595, 10, 120, 50);
+		deleteBtn.setBorder(null);
+		deleteBtn.addActionListener(this);
+		panel_4.add(deleteBtn);
 
-		JButton btnNewButton_5_1 = new JButton("New button");
-		btnNewButton_5_1.setBorder(null);
-		btnNewButton_5_1.setBackground(Color.WHITE);
-		btnNewButton_5_1.setFont(new Font("�������", Font.PLAIN, 12));
-		btnNewButton_5_1.setBounds(742, 10, 120, 50);
-		btnNewButton_5_1.setBorder(null);
-		panel_4.add(btnNewButton_5_1);
+		JButton PayBtn = new JButton("\uACB0\uC81C\uD558\uAE30");
+		PayBtn.setFont(new Font("나눔고딕", Font.PLAIN, 12));
+		PayBtn.setForeground(Color.WHITE);
+		PayBtn.setBackground(Color.DARK_GRAY);
+		PayBtn.setBounds(595, 166, 267, 84);
+		PayBtn.setBorder(null);
+		panel_4.add(PayBtn);
+		PayBtn.addActionListener(this);
 
-		JButton btnNewButton_5_2 = new JButton("\uACB0\uC81C\uD558\uAE30");
-		btnNewButton_5_2.setFont(new Font("�������", Font.PLAIN, 12));
-		btnNewButton_5_2.setForeground(Color.WHITE);
-		btnNewButton_5_2.setBackground(Color.DARK_GRAY);
-		btnNewButton_5_2.setBounds(595, 166, 267, 84);
-		btnNewButton_5_2.setBorder(null);
-		panel_4.add(btnNewButton_5_2);
-		btnNewButton_5_2.addActionListener(this);
-
-		JLabel lblNewLabel_2 = new JLabel("\uC8FC\uBB38 \uAE08\uC561");
-		lblNewLabel_2.setFont(new Font("�������", Font.BOLD, 15));
-		lblNewLabel_2.setBounds(595, 93, 85, 38);
-		panel_4.add(lblNewLabel_2);
+		JLabel orderPriceLabel = new JLabel("주문 금액:");
+		orderPriceLabel.setFont(new Font("나눔고딕", Font.BOLD, 20));
+		orderPriceLabel.setBounds(595, 93, 95, 38);
+		panel_4.add(orderPriceLabel);
 
 		JPanel panel_5 = new JPanel();
 		panel_5.setBounds(0, 0, 556, 260);
 		panel_4.add(panel_5);
 		panel_5.setLayout(null);
 
-		JPanel panel_6 = new JPanel();
+		panel_6 = new JPanel();
 
 		JScrollPane scrollPane = new JScrollPane(panel_6);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setBounds(0, 5, 556, 255);
 		panel_5.add(scrollPane);
 		panel_6.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		totalPrice = new JLabel("2000원");
+		totalPrice.setFont(new Font("나눔고딕", Font.BOLD, 20));
+		totalPrice.setBounds(767, 93, 95, 38);
+		panel_4.add(totalPrice);
 
-		JPanel panel_7_1 = new JPanel();
-		panel_6.add(panel_7_1);
-		panel_7_1.setLayout(null);
+		for(int i=0;i<5;i++) {
+			ListPanel[i] = new JPanel();
+			
+			productName[i] = new JLabel();
+			productName[i].setBounds(27, 0, 147, 50);
+			productName[i].setFont(new Font("나눔고딕", Font.PLAIN, 12));
+			ListPanel[i].add(productName[i]);
 
-		JLabel lblNewLabel_3_2 = new JLabel("\uB354\uBE14\uC0F7 \uBC14\uB2D0\uB77C \uB51C\uB77C\uC774\uD2B8");
-		lblNewLabel_3_2.setBounds(27, 0, 147, 50);
-		lblNewLabel_3_2.setFont(new Font("�������", Font.PLAIN, 12));
-		panel_7_1.add(lblNewLabel_3_2);
+			productPrice[i] = new JLabel();
+			productPrice[i].setBounds(364, 0, 50, 50);
+			productPrice[i].setFont(new Font("나눔고딕", Font.PLAIN, 12));
+			ListPanel[i].add(productPrice[i]);
 
-		JLabel lblNewLabel_3_1_2 = new JLabel("5000\uC6D0");
-		lblNewLabel_3_1_2.setBounds(364, 0, 41, 50);
-		lblNewLabel_3_1_2.setFont(new Font("�������", Font.PLAIN, 12));
-		panel_7_1.add(lblNewLabel_3_1_2);
+			productCount[i] = new JLabel();
+			productCount[i].setBounds(248, 0, 35, 50);
+			productCount[i].setFont(new Font("나눔고딕", Font.PLAIN, 12));
+			ListPanel[i].add(productCount[i]);
 
-		JLabel lblNewLabel_3_1_1_1 = new JLabel("1\uAC1C");
-		lblNewLabel_3_1_1_1.setBounds(248, 0, 35, 50);
-		lblNewLabel_3_1_1_1.setFont(new Font("�������", Font.PLAIN, 12));
-		panel_7_1.add(lblNewLabel_3_1_1_1);
+			plus[i] = new JButton("+");
+			plus[i].setFont(new Font("나눔고딕", Font.PLAIN, 12));
+			plus[i].setBounds(280, 14, 50, 23);
+			plus[i].setBorder(null);
+			plus[i].setBackground(Color.WHITE);
+			plus[i].addActionListener(this);
+			plus[i].setVisible(false);
+			ListPanel[i].add(plus[i]);
 
-		JButton btnNewButton_6_2 = new JButton("+");
-		btnNewButton_6_2.setBounds(186, 14, 50, 23);
-		btnNewButton_6_2.setBorder(null);
-		btnNewButton_6_2.setBackground(Color.WHITE);
-		panel_7_1.add(btnNewButton_6_2);
+			minus[i] = new JButton("-");
+			minus[i].setBounds(186, 14, 50, 23);
+			minus[i].setFont(new Font("나눔고딕", Font.PLAIN, 12));
+			minus[i].setBorder(null);
+			minus[i].setBackground(Color.WHITE);
+			minus[i].addActionListener(this);
+			minus[i].setVisible(false);
+			ListPanel[i].add(minus[i] );
 
-		JButton btnNewButton_6_1_1 = new JButton("-");
-		btnNewButton_6_1_1.setBounds(280, 14, 50, 23);
-		btnNewButton_6_1_1.setFont(new Font("�������", Font.PLAIN, 12));
-		btnNewButton_6_1_1.setBorder(null);
-		btnNewButton_6_1_1.setBackground(Color.WHITE);
-		panel_7_1.add(btnNewButton_6_1_1);
-
-		JButton btnNewButton_7_1 = new JButton("X");
-		btnNewButton_7_1.setBounds(446, 7, 54, 37);
-		btnNewButton_7_1.setFont(new Font("�������", Font.PLAIN, 12));
-		btnNewButton_7_1.setBorder(null);
-		btnNewButton_7_1.setBackground(Color.WHITE);
-		panel_7_1.add(btnNewButton_7_1);
-
-		JPanel panel_7_1_1 = new JPanel();
-		panel_7_1_1.setLayout(null);
-		panel_6.add(panel_7_1_1);
-
-		JLabel lblNewLabel_3_2_1 = new JLabel("\uB354\uBE14\uC0F7 \uBC14\uB2D0\uB77C \uB51C\uB77C\uC774\uD2B8");
-		lblNewLabel_3_2_1.setFont(new Font("�������", Font.PLAIN, 12));
-		lblNewLabel_3_2_1.setBounds(27, 0, 147, 50);
-		panel_7_1_1.add(lblNewLabel_3_2_1);
-
-		JLabel lblNewLabel_3_1_2_1 = new JLabel("5000\uC6D0");
-		lblNewLabel_3_1_2_1.setFont(new Font("�������", Font.PLAIN, 12));
-		lblNewLabel_3_1_2_1.setBounds(364, 0, 41, 50);
-		panel_7_1_1.add(lblNewLabel_3_1_2_1);
-
-		JLabel lblNewLabel_3_1_1_1_1 = new JLabel("1\uAC1C");
-		lblNewLabel_3_1_1_1_1.setFont(new Font("�������", Font.PLAIN, 12));
-		lblNewLabel_3_1_1_1_1.setBounds(248, 0, 35, 50);
-		panel_7_1_1.add(lblNewLabel_3_1_1_1_1);
-
-		JButton btnNewButton_6_2_1 = new JButton("+");
-		btnNewButton_6_2_1.setBorder(null);
-		btnNewButton_6_2_1.setBackground(Color.WHITE);
-		btnNewButton_6_2_1.setBounds(186, 14, 50, 23);
-		panel_7_1_1.add(btnNewButton_6_2_1);
-
-		JButton btnNewButton_6_1_1_1 = new JButton("-");
-		btnNewButton_6_1_1_1.setFont(new Font("�������", Font.PLAIN, 12));
-		btnNewButton_6_1_1_1.setBorder(null);
-		btnNewButton_6_1_1_1.setBackground(Color.WHITE);
-		btnNewButton_6_1_1_1.setBounds(280, 14, 50, 23);
-		panel_7_1_1.add(btnNewButton_6_1_1_1);
-
-		JButton btnNewButton_7_1_1 = new JButton("X");
-		btnNewButton_7_1_1.setFont(new Font("�������", Font.PLAIN, 12));
-		btnNewButton_7_1_1.setBorder(null);
-		btnNewButton_7_1_1.setBackground(Color.WHITE);
-		btnNewButton_7_1_1.setBounds(446, 7, 54, 37);
-		panel_7_1_1.add(btnNewButton_7_1_1);
-
-		JPanel panel_7_1_2 = new JPanel();
-		panel_7_1_2.setLayout(null);
-		panel_6.add(panel_7_1_2);
-
-		JLabel lblNewLabel_3_2_2 = new JLabel("\uB354\uBE14\uC0F7 \uBC14\uB2D0\uB77C \uB51C\uB77C\uC774\uD2B8");
-		lblNewLabel_3_2_2.setFont(new Font("�������", Font.PLAIN, 12));
-		lblNewLabel_3_2_2.setBounds(27, 0, 147, 50);
-		panel_7_1_2.add(lblNewLabel_3_2_2);
-
-		JLabel lblNewLabel_3_1_2_2 = new JLabel("5000\uC6D0");
-		lblNewLabel_3_1_2_2.setFont(new Font("�������", Font.PLAIN, 12));
-		lblNewLabel_3_1_2_2.setBounds(364, 0, 41, 50);
-		panel_7_1_2.add(lblNewLabel_3_1_2_2);
-
-		JLabel lblNewLabel_3_1_1_1_2 = new JLabel("1\uAC1C");
-		lblNewLabel_3_1_1_1_2.setFont(new Font("�������", Font.PLAIN, 12));
-		lblNewLabel_3_1_1_1_2.setBounds(248, 0, 35, 50);
-		panel_7_1_2.add(lblNewLabel_3_1_1_1_2);
-
-		JButton btnNewButton_6_2_2 = new JButton("+");
-		btnNewButton_6_2_2.setBorder(null);
-		btnNewButton_6_2_2.setBackground(Color.WHITE);
-		btnNewButton_6_2_2.setBounds(186, 14, 50, 23);
-		panel_7_1_2.add(btnNewButton_6_2_2);
-
-		JButton btnNewButton_6_1_1_2 = new JButton("-");
-		btnNewButton_6_1_1_2.setFont(new Font("�������", Font.PLAIN, 12));
-		btnNewButton_6_1_1_2.setBorder(null);
-		btnNewButton_6_1_1_2.setBackground(Color.WHITE);
-		btnNewButton_6_1_1_2.setBounds(280, 14, 50, 23);
-		panel_7_1_2.add(btnNewButton_6_1_1_2);
-
-		JButton btnNewButton_7_1_2 = new JButton("X");
-		btnNewButton_7_1_2.setFont(new Font("�������", Font.PLAIN, 12));
-		btnNewButton_7_1_2.setBorder(null);
-		btnNewButton_7_1_2.setBackground(Color.WHITE);
-		btnNewButton_7_1_2.setBounds(446, 7, 54, 37);
-		panel_7_1_2.add(btnNewButton_7_1_2);
-
-		JPanel panel_7_1_3 = new JPanel();
-		panel_7_1_3.setLayout(null);
-		panel_6.add(panel_7_1_3);
-
-		JLabel lblNewLabel_3_2_3 = new JLabel("\uB354\uBE14\uC0F7 \uBC14\uB2D0\uB77C \uB51C\uB77C\uC774\uD2B8");
-		lblNewLabel_3_2_3.setFont(new Font("�������", Font.PLAIN, 12));
-		lblNewLabel_3_2_3.setBounds(27, 0, 147, 50);
-		panel_7_1_3.add(lblNewLabel_3_2_3);
-
-		JLabel lblNewLabel_3_1_2_3 = new JLabel("5000\uC6D0");
-		lblNewLabel_3_1_2_3.setFont(new Font("�������", Font.PLAIN, 12));
-		lblNewLabel_3_1_2_3.setBounds(364, 0, 41, 50);
-		panel_7_1_3.add(lblNewLabel_3_1_2_3);
-
-		JLabel lblNewLabel_3_1_1_1_3 = new JLabel("1\uAC1C");
-		lblNewLabel_3_1_1_1_3.setFont(new Font("�������", Font.PLAIN, 12));
-		lblNewLabel_3_1_1_1_3.setBounds(248, 0, 35, 50);
-		panel_7_1_3.add(lblNewLabel_3_1_1_1_3);
-
-		JButton btnNewButton_6_2_3 = new JButton("+");
-		btnNewButton_6_2_3.setBorder(null);
-		btnNewButton_6_2_3.setBackground(Color.WHITE);
-		btnNewButton_6_2_3.setBounds(186, 14, 50, 23);
-		panel_7_1_3.add(btnNewButton_6_2_3);
-
-		JButton btnNewButton_6_1_1_3 = new JButton("-");
-		btnNewButton_6_1_1_3.setFont(new Font("�������", Font.PLAIN, 12));
-		btnNewButton_6_1_1_3.setBorder(null);
-		btnNewButton_6_1_1_3.setBackground(Color.WHITE);
-		btnNewButton_6_1_1_3.setBounds(280, 14, 50, 23);
-		panel_7_1_3.add(btnNewButton_6_1_1_3);
-
-		JButton btnNewButton_7_1_3 = new JButton("X");
-		btnNewButton_7_1_3.setFont(new Font("�������", Font.PLAIN, 12));
-		btnNewButton_7_1_3.setBorder(null);
-		btnNewButton_7_1_3.setBackground(Color.WHITE);
-		btnNewButton_7_1_3.setBounds(446, 7, 54, 37);
-		panel_7_1_3.add(btnNewButton_7_1_3);
-
-		JPanel panel_7_1_4 = new JPanel();
-		panel_7_1_4.setLayout(null);
-		panel_6.add(panel_7_1_4);
-
-		JLabel lblNewLabel_3_2_4 = new JLabel("\uB354\uBE14\uC0F7 \uBC14\uB2D0\uB77C \uB51C\uB77C\uC774\uD2B8");
-		lblNewLabel_3_2_4.setFont(new Font("�������", Font.PLAIN, 12));
-		lblNewLabel_3_2_4.setBounds(27, 0, 147, 50);
-		panel_7_1_4.add(lblNewLabel_3_2_4);
-
-		JLabel lblNewLabel_3_1_2_4 = new JLabel("5000\uC6D0");
-		lblNewLabel_3_1_2_4.setFont(new Font("�������", Font.PLAIN, 12));
-		lblNewLabel_3_1_2_4.setBounds(364, 0, 41, 50);
-		panel_7_1_4.add(lblNewLabel_3_1_2_4);
-
-		JLabel lblNewLabel_3_1_1_1_4 = new JLabel("1\uAC1C");
-		lblNewLabel_3_1_1_1_4.setFont(new Font("�������", Font.PLAIN, 12));
-		lblNewLabel_3_1_1_1_4.setBounds(248, 0, 35, 50);
-		panel_7_1_4.add(lblNewLabel_3_1_1_1_4);
-
-		JButton btnNewButton_6_2_4 = new JButton("+");
-		btnNewButton_6_2_4.setBorder(null);
-		btnNewButton_6_2_4.setBackground(Color.WHITE);
-		btnNewButton_6_2_4.setBounds(186, 14, 50, 23);
-		panel_7_1_4.add(btnNewButton_6_2_4);
-
-		JButton btnNewButton_6_1_1_4 = new JButton("-");
-		btnNewButton_6_1_1_4.setFont(new Font("�������", Font.PLAIN, 12));
-		btnNewButton_6_1_1_4.setBorder(null);
-		btnNewButton_6_1_1_4.setBackground(Color.WHITE);
-		btnNewButton_6_1_1_4.setBounds(280, 14, 50, 23);
-		panel_7_1_4.add(btnNewButton_6_1_1_4);
-
-		JButton btnNewButton_7_1_4 = new JButton("X");
-		btnNewButton_7_1_4.setFont(new Font("�������", Font.PLAIN, 12));
-		btnNewButton_7_1_4.setBorder(null);
-		btnNewButton_7_1_4.setBackground(Color.WHITE);
-		btnNewButton_7_1_4.setBounds(446, 7, 54, 37);
-		panel_7_1_4.add(btnNewButton_7_1_4);
-
+			delete[i] = new JButton("X");
+			delete[i].setBounds(446, 7, 54, 37);
+			delete[i].setFont(new Font("나눔고딕", Font.PLAIN, 12));
+			delete[i].setBorder(null);
+			delete[i].setBackground(Color.WHITE);
+			delete[i].addActionListener(this);
+			delete[i].setVisible(false);
+			ListPanel[i].add(delete[i]);
+			
+			panel_6.add(ListPanel[i]);
+			ListPanel[i].setLayout(null);
+		}
+	}
+	
+	void remove(int i) {
+		productName[i].setText("");
+		productPrice[i].setText("");
+		productCount[i].setText("");
+		plus[i].setVisible(false);
+		minus[i].setVisible(false);
+		delete[i].setVisible(false);
+		count=i;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		Object obj = e.getSource();
+		
+		for(int i=0;i<29;i++) {
+			if(obj==proudctListBtn[i]) {
+				productName[count].setText(name[i]);
+				productPrice[count].setText(price[i]+"원");
+				productCount[count].setText(num[count]+"개");
+				plus[count].setVisible(true);
+				minus[count].setVisible(true);
+				delete[count].setVisible(true);
+				totalprice += Integer.parseInt(price[i]);
+				totalPrice.setText(totalprice+"원");
+				count++;
+			}
+		}
+		for(int j=0;j<5;j++) {
+			if(obj == plus[j]) {
+				productCount[j].setText(++num[j]+"개");
+				for(int i=0;i<num[j]-1;i++) {
+					totalprice+=Integer.parseInt(productPrice[j].getText().substring(0,4));
+				}
+				totalPrice.setText(totalprice+"원");
+			}
+			else if(obj == minus[j]) {
+				productCount[j].setText(--num[j]+"개");
+				for(int i=0;i<num[j];i++) {
+					totalprice-=Integer.parseInt(productPrice[j].getText().substring(0,4));
+				}
+				totalPrice.setText(totalprice+"원");
+			}
+			else if(obj == delete[j]) {
+				totalprice-=Integer.parseInt(productPrice[j].getText().substring(0,4));
+				totalPrice.setText(totalprice+"원");
+				remove(j);
+			}
+		}
+		
 		String text = e.getActionCommand();
 
-		if (text.equals("뒤로가기")) {
+		switch(text) {
+		case "뒤로가기":
 			Loginpage loginpage = new Loginpage();
 			frame.dispose();
 			loginpage.frmLogin.setVisible(true);
-		}
-		else if(text.equals("결제하기")){
+			break;
+		case "결제하기":
 			PaymentPage paymentpage = new PaymentPage();
 			paymentpage.frame.setVisible(true);
+			break;
+		case "커피":
+			panel_2.setVisible(true);
+			panels.panel_2.setVisible(false);
+			panels2.panel_2.setVisible(false);
+			panels3.panel_2.setVisible(false);
+			break;
+		case "스파클링":
+			panel_2.setVisible(false);
+			panels.panel_2.setVisible(true);
+			panels2.panel_2.setVisible(false);
+			panels3.panel_2.setVisible(false);
+			break;
+		case "빙수 및 스무디":
+			panel_2.setVisible(false);
+			panels.panel_2.setVisible(false);
+			panels2.panel_2.setVisible(true);
+			panels3.panel_2.setVisible(false);
+			break;
+		case "라떼,초콜릿,티":
+			panel_2.setVisible(false);
+			panels.panel_2.setVisible(false);
+			panels2.panel_2.setVisible(false);
+			panels3.panel_2.setVisible(true);
+			break;
+		case "전체 삭제":
+			totalprice=0;
+			totalPrice.setText(totalprice+"원");
+			for(int i=0;i<5;i++) {
+				num[i]=1;
+				productName[i].setText("");
+				productPrice[i].setText("");
+				productCount[i].setText("");
+				plus[i].setVisible(false);
+				minus[i].setVisible(false);
+				delete[i].setVisible(false);
+				count=0;
+			}
+			break;
 		}
 	}
-
 }
-//�߰�����

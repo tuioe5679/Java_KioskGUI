@@ -2,6 +2,8 @@ package manager_gui;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,11 +16,13 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import httpAPI.RestApi;
+import login_gui.Loginpage;
+
 import javax.swing.JButton;
 import java.awt.Color;
 
 
-public class MangerPage {
+public class MangerPage implements ActionListener{
 
 	String[] header = {"ÁÖ¹®¹øÈ£","»óÇ°¸í","°¡°Ý","°³¼ö"};
 	private JFrame frame;
@@ -77,10 +81,10 @@ public class MangerPage {
 		frame.getContentPane().add(Loginpanel);
 		Loginpanel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("\uC8FC\uBB38\uD655\uC778");
-		lblNewLabel.setFont(new Font("³ª´®°íµñ", Font.BOLD, 25));
-		lblNewLabel.setBounds(352, 10, 135, 49);
-		Loginpanel.add(lblNewLabel);
+		JLabel TitleLabel = new JLabel("\uC8FC\uBB38\uD655\uC778");
+		TitleLabel.setFont(new Font("³ª´®°íµñ", Font.BOLD, 25));
+		TitleLabel.setBounds(352, 10, 135, 49);
+		Loginpanel.add(TitleLabel);
 		
 		table_1 = new JTable(value,header);
 		table_1.setBounds(95, 55, 283, 384);
@@ -91,8 +95,21 @@ public class MangerPage {
 		Loginpanel.add(jscp1);
 		
 		JButton backBtn = new JButton("\uB4A4\uB85C\uAC00\uAE30");
+		backBtn.setFont(new Font("³ª´®°íµñ", Font.PLAIN, 12));
 		backBtn.setBackground(Color.WHITE);
 		backBtn.setBounds(43, 43, 95, 41);
+		backBtn.setBorder(null);
+		backBtn.addActionListener(this);
 		Loginpanel.add(backBtn);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String text = e.getActionCommand();
+		if(text.equals("µÚ·Î°¡±â")) {
+			frame.dispose();
+			Loginpage loginpage = new Loginpage();
+			loginpage.frmLogin.setVisible(true);
+		}
 	}
 }
