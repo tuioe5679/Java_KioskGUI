@@ -26,7 +26,7 @@ public class UserMainPage implements ActionListener {
 	public JPanel panel;
 	public JPanel panel_6;
 	
-	int totalprice = 0;
+	public static int totalprice = 0;
 	int num[] = {1,1,1,1,1};
 	static int count = 0;
 	
@@ -123,13 +123,13 @@ public class UserMainPage implements ActionListener {
 
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.DARK_GRAY);
-		frame.setBounds(100, 100, 900, 1000);
+		frame.setBounds(100, 100, 1080, 1980);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
-		panel.setBounds(0, 0, 884, 40);
+		panel.setBounds(0, 0, 1064, 40);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
@@ -140,7 +140,7 @@ public class UserMainPage implements ActionListener {
 		TitleLabel.setBounds(400, 10, 166, 20);
 		panel.add(TitleLabel);
 
-		JButton backBtn = new JButton("\uB4A4\uB85C\uAC00\uAE30"); // 占쌘로곤옙占쏙옙
+		JButton backBtn = new JButton("뒤로가기");
 		backBtn.setFont(new Font("나눔고딕", Font.PLAIN, 12));
 		backBtn.setBackground(Color.WHITE);
 		backBtn.setBounds(12, 10, 103, 24);
@@ -148,32 +148,32 @@ public class UserMainPage implements ActionListener {
 		panel.add(backBtn);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(0, 39, 884, 33);
+		panel_1.setBounds(0, 39, 1064, 33);
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(new GridLayout(0, 4, 0, 0));
 
-		JButton menuBtn1 = new JButton("\uCEE4\uD53C");
+		JButton menuBtn1 = new JButton("커피");
 		menuBtn1.setFont(new Font("나눔고딕", Font.PLAIN, 15));
 		menuBtn1.setBackground(Color.WHITE);
 		menuBtn1.setBorder(null);
 		panel_1.add(menuBtn1);
 		menuBtn1.addActionListener(this);
 
-		JButton menuBtn2 = new JButton("\uC2A4\uD30C\uD074\uB9C1");
+		JButton menuBtn2 = new JButton("스파클링");
 		menuBtn2.setFont(new Font("나눔고딕", Font.PLAIN, 15));
 		menuBtn2.setBackground(Color.WHITE);
 		menuBtn2.setBorder(null);
 		panel_1.add(menuBtn2);
 		menuBtn2.addActionListener(this);
 
-		JButton MenuBtn3 = new JButton("\uBE59\uC218 \uBC0F \uC2A4\uBB34\uB514");
+		JButton MenuBtn3 = new JButton("빙수 및 스무디");
 		MenuBtn3.setFont(new Font("나눔고딕", Font.PLAIN, 15));
 		MenuBtn3.setBackground(Color.WHITE);
 		MenuBtn3.setBorder(null);
 		panel_1.add(MenuBtn3);
 		MenuBtn3.addActionListener(this);
 
-		JButton MenuBtn4 = new JButton("\uB77C\uB5BC,\uCD08\uCF5C\uB9BF,\uD2F0");
+		JButton MenuBtn4 = new JButton("라떼,초콜릿,티");
 		MenuBtn4.setFont(new Font("나눔고딕", Font.PLAIN, 15));
 		MenuBtn4.setBackground(Color.WHITE);
 		MenuBtn4.setBorder(null);
@@ -186,12 +186,12 @@ public class UserMainPage implements ActionListener {
 
 		panel_2 = new JPanel();
 		panel_2.setBackground(Color.DARK_GRAY);
-		panel_2.setBounds(7, 82, 870, 600);
+		panel_2.setBounds(42, 100, 979, 1269);
 		frame.getContentPane().add(panels.panel_2);
 		frame.getContentPane().add(panels2.panel_2);
 		frame.getContentPane().add(panels3.panel_2);
 		frame.getContentPane().add(panel_2);
-		panel_2.setLayout(new GridLayout(0, 4, 10, 10));
+		panel_2.setLayout(new GridLayout(3, 6, 50, 50));
 		
 		panels.panel_2.setVisible(false);
 		panels2.panel_2.setVisible(false);
@@ -204,13 +204,13 @@ public class UserMainPage implements ActionListener {
 			productNameListLabel[i] = new JLabel(name[i]);
 			productNameListLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
 			productNameListLabel[i].setFont(new Font("나눔고딕", Font.PLAIN, 12));
-			productNameListLabel[i].setBounds(12, 230, 186, 15);
+			productNameListLabel[i].setBounds(55, 350, 186, 15);
 			productListPanel[i].add(productNameListLabel[i]);
 
 			proudctListBtn[i] = new JButton("");
 			proudctListBtn[i].setIcon(new ImageIcon("img/"+image[i]));
 			proudctListBtn[i].setBackground(new Color(255, 255, 255));
-			proudctListBtn[i].setBounds(0, 0, 210, 210);
+			proudctListBtn[i].setBounds(0, 0, 300, 300);
 			proudctListBtn[i].setBorder(null);
 			proudctListBtn[i].addActionListener(this);
 			
@@ -219,7 +219,7 @@ public class UserMainPage implements ActionListener {
 
 			productPriceListLabel[i] = new JLabel(price[i]+"원");
 			productPriceListLabel[i].setFont(new Font("나눔고딕", Font.PLAIN, 12));
-			productPriceListLabel[i].setBounds(87, 255, 45, 15);
+			productPriceListLabel[i].setBounds(130, 320, 45, 15);
 			productListPanel[i].add(productPriceListLabel[i]);
 			
 			panel_2.add(productListPanel[i]);
@@ -241,7 +241,7 @@ public class UserMainPage implements ActionListener {
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBackground(Color.LIGHT_GRAY);
-		panel_4.setBounds(0, 692, 884, 260);
+		panel_4.setBounds(0, 1406, 1064, 456);
 		frame.getContentPane().add(panel_4);
 		panel_4.setLayout(null);
 
@@ -249,27 +249,27 @@ public class UserMainPage implements ActionListener {
 		deleteBtn.setBorder(null);
 		deleteBtn.setBackground(Color.WHITE);
 		deleteBtn.setFont(new Font("나눔고딕", Font.PLAIN, 12));
-		deleteBtn.setBounds(595, 10, 120, 50);
+		deleteBtn.setBounds(720, 95, 120, 50);
 		deleteBtn.setBorder(null);
 		deleteBtn.addActionListener(this);
 		panel_4.add(deleteBtn);
 
-		JButton PayBtn = new JButton("\uACB0\uC81C\uD558\uAE30");
+		JButton PayBtn = new JButton("결제하기");
 		PayBtn.setFont(new Font("나눔고딕", Font.PLAIN, 12));
 		PayBtn.setForeground(Color.WHITE);
 		PayBtn.setBackground(Color.DARK_GRAY);
-		PayBtn.setBounds(595, 166, 267, 84);
+		PayBtn.setBounds(720, 237, 267, 84);
 		PayBtn.setBorder(null);
 		panel_4.add(PayBtn);
 		PayBtn.addActionListener(this);
 
 		JLabel orderPriceLabel = new JLabel("주문 금액:");
 		orderPriceLabel.setFont(new Font("나눔고딕", Font.BOLD, 20));
-		orderPriceLabel.setBounds(595, 93, 95, 38);
+		orderPriceLabel.setBounds(720, 168, 120, 38);
 		panel_4.add(orderPriceLabel);
 
 		JPanel panel_5 = new JPanel();
-		panel_5.setBounds(0, 0, 556, 260);
+		panel_5.setBounds(0, 0, 628, 456);
 		panel_4.add(panel_5);
 		panel_5.setLayout(null);
 
@@ -277,13 +277,13 @@ public class UserMainPage implements ActionListener {
 
 		JScrollPane scrollPane = new JScrollPane(panel_6);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(0, 5, 556, 255);
+		scrollPane.setBounds(0, 5, 628, 451);
 		panel_5.add(scrollPane);
 		panel_6.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		totalPrice = new JLabel("2000원");
+		totalPrice = new JLabel("0원");
 		totalPrice.setFont(new Font("나눔고딕", Font.BOLD, 20));
-		totalPrice.setBounds(767, 93, 95, 38);
+		totalPrice.setBounds(892, 168, 95, 38);
 		panel_4.add(totalPrice);
 
 		for(int i=0;i<5;i++) {
@@ -351,7 +351,7 @@ public class UserMainPage implements ActionListener {
 		
 		Object obj = e.getSource();
 		
-		for(int i=0;i<29;i++) {
+		for(int i=1;i<28;i++) {
 			if(obj==proudctListBtn[i]) {
 				productName[count].setText(name[i]);
 				productPrice[count].setText(price[i]+"원");

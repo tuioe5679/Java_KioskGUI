@@ -81,7 +81,7 @@ public class MangerPage implements ActionListener{
 		frame.getContentPane().add(Loginpanel);
 		Loginpanel.setLayout(null);
 		
-		JLabel TitleLabel = new JLabel("\uC8FC\uBB38\uD655\uC778");
+		JLabel TitleLabel = new JLabel("주문확인");
 		TitleLabel.setFont(new Font("나눔고딕", Font.BOLD, 25));
 		TitleLabel.setBounds(352, 10, 135, 49);
 		Loginpanel.add(TitleLabel);
@@ -94,7 +94,7 @@ public class MangerPage implements ActionListener{
 		jscp1.setSize(427,354);
 		Loginpanel.add(jscp1);
 		
-		JButton backBtn = new JButton("\uB4A4\uB85C\uAC00\uAE30");
+		JButton backBtn = new JButton("뒤로가기");
 		backBtn.setFont(new Font("나눔고딕", Font.PLAIN, 12));
 		backBtn.setBackground(Color.WHITE);
 		backBtn.setBounds(43, 43, 95, 41);
@@ -108,8 +108,7 @@ public class MangerPage implements ActionListener{
 		String text = e.getActionCommand();
 		if(text.equals("뒤로가기")) {
 			frame.dispose();
-			Loginpage loginpage = new Loginpage();
-			loginpage.frmLogin.setVisible(true);
+			Loginpage.frmLogin.setVisible(true);
 		}
 	}
 }

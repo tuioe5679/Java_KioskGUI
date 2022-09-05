@@ -18,7 +18,7 @@ import user_gui.PaymentPage;
 public class RestApi {
 	
 	private static HttpURLConnection myConnet; 
-	private final static String localhostURL = "https://46eb-175-202-1-59.jp.ngrok.io/";
+	private final static String localhostURL = "http://localhost:8080/";
 	private static String index ="";
 	private static BufferedReader br;
 	private static StringBuilder sb;
@@ -126,7 +126,6 @@ public class RestApi {
 			String url_spilt[] = url.split("/");
 			String Method;
 			
-			System.out.println(url_spilt[1]);
 			Method = setMethod(url_spilt[1],SpringApi);
 			
 			switch(Method) {
@@ -201,6 +200,7 @@ public class RestApi {
 		}
 		return array;
 	}
+	
 	
 	public static String setMethod(String Method,URL SpringApi) throws IOException {
 		

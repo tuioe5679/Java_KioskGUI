@@ -28,8 +28,8 @@ public class UserPagePanel {
 
 		panel_2 = new JPanel();
 		panel_2.setBackground(Color.DARK_GRAY);
-		panel_2.setBounds(7, 82, 870, 600);
-		panel_2.setLayout(new GridLayout(0, 4, 10, 10));
+		panel_2.setBounds(42, 100, 979, 1269);
+		panel_2.setLayout(new GridLayout(3, 6, 50, 50));
 
 		UserMainPage userpage = new UserMainPage("a");
 
@@ -45,21 +45,21 @@ public class UserPagePanel {
 			productNameListLabel[i] = new JLabel(UserMainPage.name[i]);
 			productNameListLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
 			productNameListLabel[i].setFont(new Font("나눔고딕", Font.PLAIN, 12));
-			productNameListLabel[i].setBounds(12, 230, 186, 15);
+			productNameListLabel[i].setBounds(55, 350, 186, 15);
 			productListPanel[i].add(productNameListLabel[i]);
 
 			proudctListBtn[i] = new JButton("");
-			proudctListBtn[i].setIcon(new ImageIcon("img/" + UserMainPage.image[i]));
+			proudctListBtn[i].setIcon(new ImageIcon("img/"+UserMainPage.image[i]));
 			proudctListBtn[i].setBackground(new Color(255, 255, 255));
-			proudctListBtn[i].setBounds(0, 0, 210, 210);
+			proudctListBtn[i].setBounds(0, 0, 300, 300);
 			proudctListBtn[i].setBorder(null);
 			
 			productListPanel[i].add(proudctListBtn[i]);
 			
 
-			productPriceListLabel[i] = new JLabel(UserMainPage.price[i] + "원");
+			productPriceListLabel[i] = new JLabel(UserMainPage.price[i]+"원");
 			productPriceListLabel[i].setFont(new Font("나눔고딕", Font.PLAIN, 12));
-			productPriceListLabel[i].setBounds(87, 255, 45, 15);
+			productPriceListLabel[i].setBounds(130, 320, 45, 15);
 			productListPanel[i].add(productPriceListLabel[i]);
 			
 			panel_2.add(productListPanel[i]);

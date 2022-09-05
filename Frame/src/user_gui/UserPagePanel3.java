@@ -37,7 +37,7 @@ public class UserPagePanel3 {
 
 			productNameListLabel[i] = new JLabel(UserMainPage.name[i]);
 			productNameListLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
-			productNameListLabel[i].setFont(new Font("�������", Font.PLAIN, 12));
+			productNameListLabel[i].setFont(new Font("나눔고딕", Font.PLAIN, 12));
 			productNameListLabel[i].setBounds(12, 230, 186, 15);
 			productListPanel[i].add(productNameListLabel[i]);
 
@@ -48,9 +48,9 @@ public class UserPagePanel3 {
 			proudctListBtn[i].setBorder(null);
 			productListPanel[i].add(proudctListBtn[i]);
 
-			productPriceListLabel[i] = new JLabel(UserMainPage.price[i] + "��");
-			productPriceListLabel[i].setFont(new Font("�������", Font.PLAIN, 12));
-			productPriceListLabel[i].setBounds(87, 255, 45, 15);
+			productPriceListLabel[i] = new JLabel(UserMainPage.price[i] + "원");
+			productPriceListLabel[i].setFont(new Font("나눔고딕", Font.PLAIN, 12));
+			productPriceListLabel[i].setBounds(87, 255, 100, 15);
 			productListPanel[i].add(productPriceListLabel[i]);
 
 			panel_2.add(productListPanel[i]);

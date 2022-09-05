@@ -15,24 +15,28 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import httpAPI.RestApi;
+
 import javax.swing.border.EtchedBorder;
 import java.awt.GridLayout;
 
 public class PaymentPage implements ActionListener {
 
 	public static JFrame frame;
-	
+	static int as;
 	public static String retrunvalue;
 	
 	JLabel numlabel_2[];
 	JLabel OrderNamelabel_1[];
 	JLabel countLabel_1_1[];
 	JLabel Pricelabel_1[];
+	static JLabel NowPricenum;
 
+	int num = 0;
 	/**
 	 * Launch the application.
+	 * @throws SerialPortException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -72,7 +76,7 @@ public class PaymentPage implements ActionListener {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
-		JButton BackBtn = new JButton("\uCDE8\uC18C\uD558\uAE30");
+		JButton BackBtn = new JButton("취소하기");
 		BackBtn.setFont(new Font("나눔고딕", Font.PLAIN, 12));
 		BackBtn.setForeground(Color.GRAY);
 		BackBtn.setBackground(Color.WHITE);
@@ -80,7 +84,7 @@ public class PaymentPage implements ActionListener {
 		panel.add(BackBtn);
 		BackBtn.addActionListener(this);
 
-		JButton PayMentBtn = new JButton("\uACB0\uC81C\uD558\uAE30");
+		JButton PayMentBtn = new JButton("결제하기");
 		PayMentBtn.setFont(new Font("나눔고딕", Font.PLAIN, 12));
 		PayMentBtn.setForeground(Color.WHITE);
 		PayMentBtn.setBackground(Color.DARK_GRAY);
@@ -88,12 +92,12 @@ public class PaymentPage implements ActionListener {
 		PayMentBtn.addActionListener(this);
 		panel.add(PayMentBtn);
 
-		JLabel NowPrice = new JLabel("\uD22C\uC785\uAE08\uC561");
+		JLabel NowPrice = new JLabel("투입금액");
 		NowPrice.setFont(new Font("나눔고딕", Font.BOLD, 18));
 		NowPrice.setBounds(100, 233, 97, 38);
 		panel.add(NowPrice);
 
-		JLabel NowPricenum = new JLabel("0\uC6D0");
+		NowPricenum = new JLabel("0원");
 		NowPricenum.setForeground(Color.DARK_GRAY);
 		NowPricenum.setFont(new Font("나눔고딕", Font.BOLD, 18));
 		NowPricenum.setBounds(258, 242, 97, 21);
@@ -113,7 +117,7 @@ public class PaymentPage implements ActionListener {
 		panel_1.add(panel_2_1);
 		panel_2_1.setLayout(null);
 
-		JLabel OrderList = new JLabel("\uC8FC\uBB38\uBAA9\uB85D");
+		JLabel OrderList = new JLabel("주문목록");
 		OrderList.setFont(new Font("나눔고딕", Font.PLAIN, 12));
 		OrderList.setVerticalAlignment(SwingConstants.BOTTOM);
 		OrderList.setBounds(66, 2, 48, 15);
@@ -125,7 +129,7 @@ public class PaymentPage implements ActionListener {
 		panel_1.add(panel_2_1_1);
 		panel_2_1_1.setLayout(null);
 
-		JLabel OrderIndex = new JLabel("\uC218\uB7C9");
+		JLabel OrderIndex = new JLabel("수량");
 		OrderIndex.setFont(new Font("나눔고딕", Font.PLAIN, 12));
 		OrderIndex.setBounds(10, 2, 24, 15);
 		panel_2_1_1.add(OrderIndex);
@@ -136,7 +140,7 @@ public class PaymentPage implements ActionListener {
 		panel_1.add(panel_2_1_1_1);
 		panel_2_1_1_1.setLayout(null);
 
-		JLabel OrderPrice = new JLabel("\uAC00\uACA9");
+		JLabel OrderPrice = new JLabel("가격");
 		OrderPrice.setFont(new Font("나눔고딕", Font.PLAIN, 12));
 		OrderPrice.setBounds(20, 2, 24, 15);
 		panel_2_1_1_1.add(OrderPrice);
@@ -172,16 +176,23 @@ public class PaymentPage implements ActionListener {
 			panel_2.add(Pricelabel_1[i]);
 		}
 		
-		JLabel PayPrice = new JLabel("\uACB0\uC81C\uAE08\uC561");
+		JLabel PayPrice = new JLabel("결제금액");
 		PayPrice.setFont(new Font("나눔고딕", Font.BOLD, 18));
 		PayPrice.setBounds(100, 272, 97, 38);
 		panel.add(PayPrice);
 
-		JLabel PayPricenum = new JLabel(UserMainPage.totalPrice.getText() + "");
+		JLabel PayPricenum = new JLabel(UserMainPage.totalprice + "원");
 		PayPricenum.setForeground(Color.RED);
 		PayPricenum.setFont(new Font("나눔고딕", Font.BOLD, 18));
 		PayPricenum.setBounds(258, 278, 97, 26);
 		panel.add(PayPricenum);
+		
+		JButton btnNewButton = new JButton("금액 투입");
+		btnNewButton.setBackground(Color.WHITE);
+		btnNewButton.setFont(new Font("나눔고딕", Font.PLAIN, 12));
+		btnNewButton.setBounds(329, 320, 93, 43);
+		btnNewButton.addActionListener(this);
+		panel.add(btnNewButton);
 	}
 
 	@Override
@@ -190,21 +201,25 @@ public class PaymentPage implements ActionListener {
 		if (text.equals("취소하기")) {
 			PaymentPage.frame.dispose();
 		}
-		else if (text.equals("결제하기")) {
-			Vector<String> postvalue = new Vector<String>();
-			for(int i=0;i<UserMainPage.count;i++) {
-				postvalue.add(0, numlabel_2[i].getText());
-				postvalue.add(1, OrderNamelabel_1[i].getText());
-				postvalue.add(2, Pricelabel_1[i].getText().substring(0,4));
-				postvalue.add(3, countLabel_1_1[0].getText().substring(0,1));
-				retrunvalue=RestApi.ordersDAOPost("orders/post", postvalue);
-			}	
-			if(!retrunvalue.equals("")) {
+		else if (text.equals("결제하기")) {	
+			if(num>=UserMainPage.totalprice) {
+				Vector<String> postvalue = new Vector<String>();
+				for(int i=0;i<UserMainPage.count;i++) {
+					postvalue.add(0, numlabel_2[i].getText());
+					postvalue.add(1, OrderNamelabel_1[i].getText());
+					postvalue.add(2, Pricelabel_1[i].getText().substring(0,4));
+					postvalue.add(3, countLabel_1_1[0].getText().substring(0,1));
+					retrunvalue=RestApi.ordersDAOPost("orders/post", postvalue);
+				}
 				JOptionPane.showConfirmDialog(null, "결제완료","성공",JOptionPane.INFORMATION_MESSAGE);
 			}
-			else if(retrunvalue.equals("")){
+			else{
 				JOptionPane.showConfirmDialog(null, "결제실패","경고",JOptionPane.WARNING_MESSAGE);
 			}
+		}
+		else if(text.equals("금액 투입")) {
+			num+=5000;
+			NowPricenum.setText(num+"원");
 		}
 	}
 }
