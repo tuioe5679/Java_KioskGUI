@@ -88,7 +88,7 @@ public class UserMainPage implements ActionListener {
 
 		for (int i = 0; i < array.length(); i++) {
 			JSONObject obj = array.getJSONObject(i); 
-			index[i] = (String) obj.get("id") + "," + (String) obj.get("name") + "," + (String) obj.get("price") + ","
+			index[i] = obj.get("id") + "," + (String) obj.get("name") + "," + (String) obj.get("price") + ","
 					+ (String) obj.get("image");
 		}
 		for (int i = 0; i < array.length(); i++) {
@@ -123,13 +123,13 @@ public class UserMainPage implements ActionListener {
 
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.DARK_GRAY);
-		frame.setBounds(100, 100, 1080, 1980);
+		frame.setBounds(100, 100, 1440, 2560);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
-		panel.setBounds(0, 0, 1064, 40);
+		panel.setBounds(0, 0, 1440, 40);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
@@ -137,7 +137,7 @@ public class UserMainPage implements ActionListener {
 		TitleLabel.setForeground(new Color(51, 102, 255));
 		TitleLabel.setFont(new Font("나눔고딕", Font.BOLD, 20));
 		TitleLabel.setBackground(Color.CYAN);
-		TitleLabel.setBounds(400, 10, 166, 20);
+		TitleLabel.setBounds(650, 10, 166, 20);
 		panel.add(TitleLabel);
 
 		JButton backBtn = new JButton("뒤로가기");
@@ -148,7 +148,7 @@ public class UserMainPage implements ActionListener {
 		panel.add(backBtn);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(0, 39, 1064, 33);
+		panel_1.setBounds(0, 39, 1440, 45);
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(new GridLayout(0, 4, 0, 0));
 
@@ -186,7 +186,7 @@ public class UserMainPage implements ActionListener {
 
 		panel_2 = new JPanel();
 		panel_2.setBackground(Color.DARK_GRAY);
-		panel_2.setBounds(42, 100, 979, 1269);
+		panel_2.setBounds(42, 120, 1350, 1650);
 		frame.getContentPane().add(panels.panel_2);
 		frame.getContentPane().add(panels2.panel_2);
 		frame.getContentPane().add(panels3.panel_2);
@@ -197,20 +197,20 @@ public class UserMainPage implements ActionListener {
 		panels2.panel_2.setVisible(false);
 		panels3.panel_2.setVisible(false);
 		
-		for(int i=0;i<8;i++) {
+		for(int i=0;i<9;i++) {
 			productListPanel[i] = new JPanel();
 			productListPanel[i].setBackground(Color.LIGHT_GRAY);
 
 			productNameListLabel[i] = new JLabel(name[i]);
 			productNameListLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
-			productNameListLabel[i].setFont(new Font("나눔고딕", Font.PLAIN, 12));
-			productNameListLabel[i].setBounds(55, 350, 186, 15);
+			productNameListLabel[i].setFont(new Font("나눔고딕", Font.PLAIN, 15));
+			productNameListLabel[i].setBounds(115, 410, 186, 15);
 			productListPanel[i].add(productNameListLabel[i]);
 
 			proudctListBtn[i] = new JButton("");
 			proudctListBtn[i].setIcon(new ImageIcon("img/"+image[i]));
 			proudctListBtn[i].setBackground(new Color(255, 255, 255));
-			proudctListBtn[i].setBounds(0, 0, 300, 300);
+			proudctListBtn[i].setBounds(0, 0, 420, 380);
 			proudctListBtn[i].setBorder(null);
 			proudctListBtn[i].addActionListener(this);
 			
@@ -219,18 +219,18 @@ public class UserMainPage implements ActionListener {
 
 			productPriceListLabel[i] = new JLabel(price[i]+"원");
 			productPriceListLabel[i].setFont(new Font("나눔고딕", Font.PLAIN, 12));
-			productPriceListLabel[i].setBounds(130, 320, 45, 15);
+			productPriceListLabel[i].setBounds(190, 450, 105, 15);
 			productListPanel[i].add(productPriceListLabel[i]);
 			
 			panel_2.add(productListPanel[i]);
 			productListPanel[i].setLayout(null);
 		}
 		
-		for(int i=8;i<15;i++) {
+		for(int i=9;i<18;i++) {
 			proudctListBtn[i] = panels.proudctListBtn[i];
 			panels.proudctListBtn[i].addActionListener(this);
 		}
-		for(int i=15;i<20;i++) {
+		for(int i=18;i<27;i++) {
 			proudctListBtn[i] = panels2.proudctListBtn[i];
 			panels2.proudctListBtn[i].addActionListener(this);
 		}
@@ -241,7 +241,7 @@ public class UserMainPage implements ActionListener {
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBackground(Color.LIGHT_GRAY);
-		panel_4.setBounds(0, 1406, 1064, 456);
+		panel_4.setBounds(0, 1814, 1450, 707);
 		frame.getContentPane().add(panel_4);
 		panel_4.setLayout(null);
 
@@ -249,7 +249,7 @@ public class UserMainPage implements ActionListener {
 		deleteBtn.setBorder(null);
 		deleteBtn.setBackground(Color.WHITE);
 		deleteBtn.setFont(new Font("나눔고딕", Font.PLAIN, 12));
-		deleteBtn.setBounds(720, 95, 120, 50);
+		deleteBtn.setBounds(1007, 206, 120, 50);
 		deleteBtn.setBorder(null);
 		deleteBtn.addActionListener(this);
 		panel_4.add(deleteBtn);
@@ -258,18 +258,18 @@ public class UserMainPage implements ActionListener {
 		PayBtn.setFont(new Font("나눔고딕", Font.PLAIN, 12));
 		PayBtn.setForeground(Color.WHITE);
 		PayBtn.setBackground(Color.DARK_GRAY);
-		PayBtn.setBounds(720, 237, 267, 84);
+		PayBtn.setBounds(1007, 462, 267, 84);
 		PayBtn.setBorder(null);
 		panel_4.add(PayBtn);
 		PayBtn.addActionListener(this);
 
 		JLabel orderPriceLabel = new JLabel("주문 금액:");
 		orderPriceLabel.setFont(new Font("나눔고딕", Font.BOLD, 20));
-		orderPriceLabel.setBounds(720, 168, 120, 38);
+		orderPriceLabel.setBounds(1007, 279, 120, 38);
 		panel_4.add(orderPriceLabel);
 
 		JPanel panel_5 = new JPanel();
-		panel_5.setBounds(0, 0, 628, 456);
+		panel_5.setBounds(0, 0, 865, 707);
 		panel_4.add(panel_5);
 		panel_5.setLayout(null);
 
@@ -277,13 +277,13 @@ public class UserMainPage implements ActionListener {
 
 		JScrollPane scrollPane = new JScrollPane(panel_6);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(0, 5, 628, 451);
+		scrollPane.setBounds(0, 5, 865, 702);
 		panel_5.add(scrollPane);
 		panel_6.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		totalPrice = new JLabel("0원");
 		totalPrice.setFont(new Font("나눔고딕", Font.BOLD, 20));
-		totalPrice.setBounds(892, 168, 95, 38);
+		totalPrice.setBounds(1179, 279, 95, 38);
 		panel_4.add(totalPrice);
 
 		for(int i=0;i<5;i++) {
