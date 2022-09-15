@@ -31,7 +31,7 @@ public class UserPagePanel3 {
 		proudctListBtn = new JButton[array.length()];
 		JLabel productPriceListLabel[] = new JLabel[array.length()];
 
-		for (int i = 20; i < 28; i++) {
+		for (int i = 27; i < 36; i++) {
 			productListPanel[i] = new JPanel();
 			productListPanel[i].setBackground(Color.LIGHT_GRAY);
 

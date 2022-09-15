@@ -88,7 +88,7 @@ public class UserMainPage implements ActionListener {
 
 		for (int i = 0; i < array.length(); i++) {
 			JSONObject obj = array.getJSONObject(i); 
-			index[i] = obj.get("id") + "," + (String) obj.get("name") + "," + (String) obj.get("price") + ","
+			index[i] = (String) obj.get("id") + "," + (String) obj.get("name") + "," + (String) obj.get("price") + ","
 					+ (String) obj.get("image");
 		}
 		for (int i = 0; i < array.length(); i++) {
@@ -159,21 +159,21 @@ public class UserMainPage implements ActionListener {
 		panel_1.add(menuBtn1);
 		menuBtn1.addActionListener(this);
 
-		JButton menuBtn2 = new JButton("스파클링");
+		JButton menuBtn2 = new JButton("라떼 초콜릿 티");
 		menuBtn2.setFont(new Font("나눔고딕", Font.PLAIN, 15));
 		menuBtn2.setBackground(Color.WHITE);
 		menuBtn2.setBorder(null);
 		panel_1.add(menuBtn2);
 		menuBtn2.addActionListener(this);
 
-		JButton MenuBtn3 = new JButton("빙수 및 스무디");
+		JButton MenuBtn3 = new JButton("할리치노 빙수");
 		MenuBtn3.setFont(new Font("나눔고딕", Font.PLAIN, 15));
 		MenuBtn3.setBackground(Color.WHITE);
 		MenuBtn3.setBorder(null);
 		panel_1.add(MenuBtn3);
 		MenuBtn3.addActionListener(this);
 
-		JButton MenuBtn4 = new JButton("라떼,초콜릿,티");
+		JButton MenuBtn4 = new JButton("푸드");
 		MenuBtn4.setFont(new Font("나눔고딕", Font.PLAIN, 15));
 		MenuBtn4.setBackground(Color.WHITE);
 		MenuBtn4.setBorder(null);
@@ -234,7 +234,7 @@ public class UserMainPage implements ActionListener {
 			proudctListBtn[i] = panels2.proudctListBtn[i];
 			panels2.proudctListBtn[i].addActionListener(this);
 		}
-		for(int i=20;i<28;i++) {
+		for(int i=27;i<36;i++) {
 			proudctListBtn[i] = panels3.proudctListBtn[i];
 			panels3.proudctListBtn[i].addActionListener(this);
 		}
@@ -351,7 +351,7 @@ public class UserMainPage implements ActionListener {
 		
 		Object obj = e.getSource();
 		
-		for(int i=1;i<28;i++) {
+		for(int i=0;i<36;i++) {
 			if(obj==proudctListBtn[i]) {
 				productName[count].setText(name[i]);
 				productPrice[count].setText(price[i]+"원");
@@ -404,19 +404,19 @@ public class UserMainPage implements ActionListener {
 			panels2.panel_2.setVisible(false);
 			panels3.panel_2.setVisible(false);
 			break;
-		case "스파클링":
+		case "라떼 초콜릿 티":
 			panel_2.setVisible(false);
 			panels.panel_2.setVisible(true);
 			panels2.panel_2.setVisible(false);
 			panels3.panel_2.setVisible(false);
 			break;
-		case "빙수 및 스무디":
+		case "할리치노 빙수":
 			panel_2.setVisible(false);
 			panels.panel_2.setVisible(false);
 			panels2.panel_2.setVisible(true);
 			panels3.panel_2.setVisible(false);
 			break;
-		case "라떼,초콜릿,티":
+		case "푸드":
 			panel_2.setVisible(false);
 			panels.panel_2.setVisible(false);
 			panels2.panel_2.setVisible(false);
