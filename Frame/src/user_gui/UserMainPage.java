@@ -18,6 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import httpAPI.RestApi;
 import login_gui.Loginpage;
+import player.Mp3Player;
 
 public class UserMainPage implements ActionListener {
 
@@ -88,7 +89,7 @@ public class UserMainPage implements ActionListener {
 
 		for (int i = 0; i < array.length(); i++) {
 			JSONObject obj = array.getJSONObject(i); 
-			index[i] = (String) obj.get("id") + "," + (String) obj.get("name") + "," + (String) obj.get("price") + ","
+			index[i] = obj.get("id") + "," + (String) obj.get("name") + "," + (String) obj.get("price") + ","
 					+ (String) obj.get("image");
 		}
 		for (int i = 0; i < array.length(); i++) {
@@ -290,23 +291,23 @@ public class UserMainPage implements ActionListener {
 			ListPanel[i] = new JPanel();
 			
 			productName[i] = new JLabel();
-			productName[i].setBounds(27, 0, 147, 50);
-			productName[i].setFont(new Font("나눔고딕", Font.PLAIN, 12));
+			productName[i].setBounds(50, 0, 200, 100);
+			productName[i].setFont(new Font("나눔고딕", Font.PLAIN, 15));
 			ListPanel[i].add(productName[i]);
 
 			productPrice[i] = new JLabel();
-			productPrice[i].setBounds(364, 0, 50, 50);
-			productPrice[i].setFont(new Font("나눔고딕", Font.PLAIN, 12));
+			productPrice[i].setBounds(480, 0, 200, 100);
+			productPrice[i].setFont(new Font("나눔고딕", Font.PLAIN, 15));
 			ListPanel[i].add(productPrice[i]);
 
 			productCount[i] = new JLabel();
-			productCount[i].setBounds(248, 0, 35, 50);
-			productCount[i].setFont(new Font("나눔고딕", Font.PLAIN, 12));
+			productCount[i].setBounds(330, 40, 50, 23);
+			productCount[i].setFont(new Font("나눔고딕", Font.PLAIN, 15));
 			ListPanel[i].add(productCount[i]);
 
 			plus[i] = new JButton("+");
-			plus[i].setFont(new Font("나눔고딕", Font.PLAIN, 12));
-			plus[i].setBounds(280, 14, 50, 23);
+			plus[i].setFont(new Font("나눔고딕", Font.PLAIN, 15));
+			plus[i].setBounds(380, 30, 50, 40);
 			plus[i].setBorder(null);
 			plus[i].setBackground(Color.WHITE);
 			plus[i].addActionListener(this);
@@ -314,7 +315,7 @@ public class UserMainPage implements ActionListener {
 			ListPanel[i].add(plus[i]);
 
 			minus[i] = new JButton("-");
-			minus[i].setBounds(186, 14, 50, 23);
+			minus[i].setBounds(250, 30, 50, 40);
 			minus[i].setFont(new Font("나눔고딕", Font.PLAIN, 12));
 			minus[i].setBorder(null);
 			minus[i].setBackground(Color.WHITE);
@@ -323,7 +324,7 @@ public class UserMainPage implements ActionListener {
 			ListPanel[i].add(minus[i] );
 
 			delete[i] = new JButton("X");
-			delete[i].setBounds(446, 7, 54, 37);
+			delete[i].setBounds(600, 30, 50, 40);
 			delete[i].setFont(new Font("나눔고딕", Font.PLAIN, 12));
 			delete[i].setBorder(null);
 			delete[i].setBackground(Color.WHITE);
@@ -333,6 +334,7 @@ public class UserMainPage implements ActionListener {
 			
 			panel_6.add(ListPanel[i]);
 			ListPanel[i].setLayout(null);
+			
 		}
 	}
 	
@@ -351,8 +353,11 @@ public class UserMainPage implements ActionListener {
 		
 		Object obj = e.getSource();
 		
+		
 		for(int i=0;i<36;i++) {
 			if(obj==proudctListBtn[i]) {
+				Mp3Player mp3 = new Mp3Player();
+				mp3.ttsPlay(name[i]);
 				productName[count].setText(name[i]);
 				productPrice[count].setText(price[i]+"원");
 				productCount[count].setText(num[count]+"개");
