@@ -367,6 +367,18 @@ public class UserMainPage implements ActionListener {
 				totalprice += Integer.parseInt(price[i]);
 				totalPrice.setText(totalprice+"원");
 				count++;
+				Timer timer = new Timer();
+				TimerTask task = new TimerTask() {
+						
+					@Override
+					public void run() {
+						for(JButton jb : proudctListBtn) {
+							jb.setEnabled(true);
+						}			
+					}
+				};
+					
+				timer.schedule(task,100);
 			}
 		}
 		for(int j=0;j<5;j++) {
